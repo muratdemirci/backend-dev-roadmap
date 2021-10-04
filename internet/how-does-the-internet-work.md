@@ -67,6 +67,7 @@ So your computer is connected to the Internet and has a unique address. How does
 | Transmission Control Protocol Layer | TCP directs packets to a specific application on a computer using a port number. |
 | Internet Protocol Layer | IP directs packets to a specific computer using an IP address. |
 | Hardware Layer |  Converts binary packet data to network signals and back. (E.g. ethernet network card, modem for phone lines, etc.)|
+
   
   
 If we were to follow the path that the message "Hello computer 5.6.7.8!" took from our computer to the computer with IP address 5.6.7.8, it would happen something like this:  
@@ -343,7 +344,7 @@ Updates made 2002
 
 ## Resources
 
-Main recource of this article:
+Main resource of this article:
 [https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)
 
 Below are some interesting links associated with some of the topics discussed. (I hope they all still work. All open in new window.)

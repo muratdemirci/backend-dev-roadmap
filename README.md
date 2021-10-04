@@ -1,4 +1,165 @@
 ## Backend Developer Roadmap
-Step by step guide to becoming a modern backend developer in 2021
+
+> Step by step guide to becoming a modern backend developer in 2021
+
+Live: https://muratdemirci.github.io/backend-dev-roadmap/#/
+
+# Table of Contents
+
+<!-- _sidebar.md -->
+
+- [Internet](./internet/index)
+  * [**How Does the Internet Work?**](./internet/how-does-the-internet-work)
+  * [**What is HTTP?**](./internet/what-is-http)
+  * [**Browsers and how they work**](./internet/browsers-and-how-they-work)
+  * [**DNS and how it works?**](./internet/dns-and-how-it-works)
+  * [**What is Domain Name?**](./internet/what-is-domain-name)
+  * [**What is hosting?**](./internet/what-is-hosting)
+  
+
++ [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
+    * [**HTML**](./basic-frontend-knowledge/html.md)
+    * [**JavaScript**](./basic-frontend-knowledge/javascript.md)
+    * [**CSS**](./basic-frontend-knowledge/css.md)
+
+- [Os and General Knowledge](./os-general-knowledge/index)
+    * [**Terminal Usage**](./os-general-knowledge/terminal-usage.md)
+    * [**How OSs work in General**](./os-general-knowledge/how-oss-work-in-general.md)
+    * [**Process Management**](./os-general-knowledge/process-management.md)
+    * [**Threads and Concurrency**](./os-general-knowledge/threads-and-concurrency.md)
+    * [**Basic Terminal Commands**](./os-general-knowledge/basic-terminal-commands.md)
+    * [**Memory Management**](./os-general-knowledge/memory-management.md)
+    * [**Interprocess Communication**](./os-general-knowledge/interprocess-communication.md)
+    * [**I/O Management**](./os-general-knowledge/i-o-management.md)
+    * [**POSIX Basics**](./os-general-knowledge/posix-basics.md)
+    * [**Basic Networking Concepts**](./os-general-knowledge/basic-networking-concepts.md)        
+    
++ [Learn a Programming Language](./learn-a-programming-language/index)
+    * [**JavaScript**](./learn-a-programming-language/javascript.md)
+    * [**PHP**](./learn-a-programming-language/php.md)
+    * [**Golang**](./learn-a-programming-language/golang.md)
+
+- [Version Control Systems](./version-control-systems/index)
+    * [**Basic Usage of Git**](./os-general-knowledge/basic-usage-of-git.md)
+
++ [Databases](./databases/index)
+  * [Relational Databases](./databases/relational-databases/index)
+    * [**PostgreSQL**](./databases/relational-databases/postgresql.md)
+    * [**MySQL**](./databases/relational-databases/mysql.md)
+    * [**MariaDB**](./databases/relational-databases/mariadb.md)
+    * [**MS SQL**](./databases/relational-databases/mariadb.md)
+    * [**Oracle**](./databases/relational-databases/oracle.md)
+  * [NoSQL Databases](./databases/nosql-databases/index)
+    * [**MongoDB**](./databases/relational-databases/oracle.md)
+    * [**RethinkDB**](./databases/relational-databases/rethinkdb.md)
+    * [**CouchDB**](./databases/relational-databases/couchdb.md)
+    * [**DynamoDB**](./databases/relational-databases/dynamodb.md)
+  * [ORMs](./databases/orms/index)
+  * [ACID](./databases/acid/index)
+  * [Transactions](./databases/transactions/index)
+  * [N+1 Problem](./databases/n-plus-1-problem/index)
+  * [Database Normalization](./databases/database-normalization/index)
+  * [Indexes and how they work](./databases/indexes-and-how-they-works/index)
+  * [Data Replication](./databases/data-replication/index)
+  * [Sharding Strategies](./databases/sharding-strategies/index)
+  * [CAP Theorem](./databases/cap-theorem/index)
+- [Learn about APIs](./learn-about-api-s/index)
+  * [Authentication](./learn-about-api-s/authentication/index)
+    * [**Cookie Based**](./learn-about-api-s/authentication/cookie-based.md)
+    * [**OAuth**](./learn-about-api-s/authentication/oauth.md)
+    * [**Basic Authentication**](./learn-about-api-s/authentication/basic-authentication.md)
+    * [**Token Authentication**](./learn-about-api-s/authentication/token-authentication.md)
+    * [**JWT**](./learn-about-api-s/authentication/jwt.md)
+    * [**OpenID**](./learn-about-api-s/authentication/openid.md)
+    * [**SAML**](./learn-about-api-s/authentication/saml.md)
+  * [REST](./learn-about-api-s/rest/index)
+  * [JSON APIs](./learn-about-api-s/json-apis/index)
+  * [SOAP](./learn-about-api-s/soap/index)
+  * [HATEOAS](./learn-about-api-s/hateoas/index)
+  * [Open API Spec](./learn-about-api-s/soap/index)
+
++ [Caching](./caching/index)
+    * [CDN](./caching/cdn.md)
+    * [Client Side](./caching/client-side.md)
+    * [Server Side](./caching/server-side.md)
+        * [**Redis**](./caching/redis.md)
+        * [**Memcached**](./caching/memcached.md)
+
+- [Web Security](./web-security/index)       
+    * [Hashing Algorithms](./web-security/hashing/index)
+        * [**MD5**](./web-security/hashing/md5.md)
+        * [**SHA Family**](./web-security/hashing/sha-family.md)
+        * [**Bcrypt**](./web-security/hashing/bcrypt.md)
+        * [**Scrypt**](./web-security/hashing/scrypt.md)
+    * [HTTPS](./web-security/https/index)
+    * [Content Security Policy](./web-security/content-security-policy/index)
+    * [CORS](./web-security/cors/index)
+    * [SSL/TLS](./web-security/ssl-tls/index)
+    * [OWASP Security Risks](./web-security/owasp-security-risks/index)
+
++ [Testing](./testing/index)
+    * [Unit Testing](./testing/unit-testing.md)
+    * [Integration Testing](./testing/integration-testing.md)
+    * [Functional Testing](./testing/functional-testing.md)
+
+- [CI / CD](./ci-cd/index)
+
++ [Design and Development Principles](./design-and-development-principles/index)
+  * [SOLID](./design-and-development-principles/solid.md)
+  * [KISS](./design-and-development-principles/kiss.md)
+  * [YAGNI](./design-and-development-principles/yagni.md)
+  * [DRY](./design-and-development-principles/dry.md)
+  * [GOF Design Patterns](./design-and-development-principles/gof.md)
+  * [Domain Driven Design](./design-and-development-principles/ddd.md)
+  * [Test Driven Development](./design-and-development-principles/tdd.md)
+
+- [Architectural Patterns](./architectural-patterns/index)
+  * [Monolothic Apps](./architectural-patterns/monolithic.md)
+  * [Microservices](./architectural-patterns/microservices.md)
+  * [SOA](./architectural-patterns/soa.md)
+  * [CQRS and Event Sourcing](./architectural-patterns/cqrs-and-event-sourcing.md)
+  * [Serverless](./architectural-patterns/serverless.md)
+
++ [Search Engines](./search-engines/index)
+  * [Elastic Search](./search-engines/elastic-search.md)
+  * [Solr](./search-engines/solr.md)
+
+- [Message Brokers](./message-brokers/index)
+  * [RabbitMQ](./message-brokers/rabbitmq.md)
+  * [Kafka](./message-brokers/kafka.md)
+
++ [Containerization vs Virtualization](./containerization-virtualization/index)
+  * [Docker](./containerization-virtualization/docker.md)
+  * [rkt](./containerization-virtualization/rkt.md)
+  * [LXC](./containerization-virtualization/lxc.md)
+
+- [GraphQL](./graphql/index)
+  * [Apollo](./graphql/apollo.md)
+  * [Relay Modern](./graphql/relay-modern.md)
+
++ [Graph Databases](./graph-databases/index)
+  * [Neo4j](./graph-databases/neo4j.md)
+
+- [WebSockets](./websockets/index)
+
++ [Web Servers](./web-servers/index)
+  * [Nginx](./web-servers/nginx.md)
+  * [Apache](./web-servers/apache.md)
+  * [Caddy](./web-servers/caddy.md)
+  * [MS IIS](./web-servers/ms-iis.md)
+
+- [Scaling](./scaling/index)
+    * [Mitigation Strategies](./scaling/mitigation-strategies/index)
+        * [**Graceful Degradation**](./scaling/mitigation-strategies/graceful-degradation.md)
+        * [**Throttling**](./scaling/mitigation-strategies/throttling.md)
+        * [**Backpressure**](./scaling/mitigation-strategies/backpressure.md)
+        * [**Loadshifting**](./scaling/mitigation-strategies/loadshifting.md)
+        * [**Circuit Breaker**](./scaling/mitigation-strategies/circuit-breaker.md)
+    * [Understand the Diff](./scaling/understand-the-diff/index)
+        * [**Instrumentation**](./scaling/understand-the-diff/instrumentation.md)
+        * [**Monitoring**](./scaling/understand-the-diff/monitoring.md)
+        * [**Telemetry**](./scaling/understand-the-diff/telemetry.md)
+    * [Migration Strategies](./scaling/migration-strategies/index)
+    * [Horizontal vs Vertical Scaling](./scaling/horizontal-vs-vertical-scaling/index)
 
 TOC credits: [https://roadmap.sh/backend](https://roadmap.sh/backend)
