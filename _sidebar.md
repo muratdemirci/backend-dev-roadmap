@@ -1,49 +1,51 @@
 <!-- docs/_sidebar.md -->
 
+- [Table of Contents](./)
 
-* [Table of Contents](./)
+- [Internet](./internet/index)
 
-* [Internet](./internet/index)
-  * [How Does the Internet Work?](./internet/how-does-the-internet-work)
+  - [How Does the Internet Work?](./internet/how-does-the-internet-work)
+  - [What is HTTP?](./internet/what-is-http)
 
-* [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
+- [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
 
-* [Os and General Knowledge](./os-general-knowledge/index)
+- [Os and General Knowledge](./os-general-knowledge/index)
 
-* [Learn a Programming Language](./learn-a-programming-language)
+- [Learn a Programming Language](./learn-a-programming-language)
 
-* [Version Control Systems](./version-control-systems)
+- [Version Control Systems](./version-control-systems)
 
-* [Databases](./databases/index)
-  * [Relational Databases](./databases/relational-databases/index)
-  * [NoSQL Databases](./databases/nosql-databases/index)
+- [Databases](./databases/index)
 
-* [Learn about APIs](./learn-about-api-s/index)
+  - [Relational Databases](./databases/relational-databases/index)
+  - [NoSQL Databases](./databases/nosql-databases/index)
 
-* [Caching](./caching/index)
+- [Learn about APIs](./learn-about-api-s/index)
 
-* [Web Security](./web-security/index)
+- [Caching](./caching/index)
 
-* [Testing](./testing/index)
+- [Web Security](./web-security/index)
 
-* [CI / CD](./ci-cd/index)
+- [Testing](./testing/index)
 
-* [Design and Development Principles](./design-and-development-principles/index)
+- [CI / CD](./ci-cd/index)
 
-* [Architectural Patterns](./architectural-patterns/index)
+- [Design and Development Principles](./design-and-development-principles/index)
 
-* [Search Engines](./search-engines/index)
+- [Architectural Patterns](./architectural-patterns/index)
 
-* [Message Brokers](./message-brokers/index)
+- [Search Engines](./search-engines/index)
 
-* [Containerization vs Virtualization](./containerization-virtualization/index)
+- [Message Brokers](./message-brokers/index)
 
-* [GraphQL](./graphql/index)
+- [Containerization vs Virtualization](./containerization-virtualization/index)
 
-* [Graph Databases](./graph-databases/index)
+- [GraphQL](./graphql/index)
 
-* [WebSockets](./websockets/index)
+- [Graph Databases](./graph-databases/index)
 
-* [Web Servers](./web-servers/index)
+- [WebSockets](./websockets/index)
 
-* [Scaling](./scaling/index)
+- [Web Servers](./web-servers/index)
+
+- [Scaling](./scaling/index)
