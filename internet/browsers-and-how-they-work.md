@@ -1,3 +1,5 @@
+# Browsers and How They Work?
+
 By [Tali Garsiel](https://www.html5rocks.com/profiles/#taligarsiel) and [Paul Irish](https://www.html5rocks.com/profiles/#paulirish)
 
 Published: August 5th, 2011

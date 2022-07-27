@@ -7,6 +7,7 @@
   - [How Does the Internet Work?](./internet/how-does-the-internet-work)
   - [What is HTTP?](./internet/what-is-http)
   - [Browsers and how they work](./internet/browsers-and-how-they-work)
+  - [Dns and How It Works?](./internet/dns-and-how-it-works)
 
 - [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
 
