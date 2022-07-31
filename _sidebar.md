@@ -8,6 +8,7 @@
   - [What is HTTP?](./internet/what-is-http)
   - [Browsers and how they work](./internet/browsers-and-how-they-work)
   - [Dns and How It Works?](./internet/dns-and-how-it-works)
+  - [What is a Domain Name?](./internet/what-is-domain-name)
 
 - [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
 
