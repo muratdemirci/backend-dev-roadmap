@@ -9,6 +9,7 @@
   - [Browsers and how they work](./internet/browsers-and-how-they-work)
   - [Dns and How It Works?](./internet/dns-and-how-it-works)
   - [What is a Domain Name?](./internet/what-is-domain-name)
+  - [What is a Hosting?](./internet/what-is-hosting)
 
 - [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
 
