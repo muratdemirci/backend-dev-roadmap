@@ -3,7 +3,6 @@
 - [Table of Contents](./)
 
 - [Internet](./internet/index)
-
   - [How Does the Internet Work?](./internet/how-does-the-internet-work)
   - [What is HTTP?](./internet/what-is-http)
   - [Browsers and how they work](./internet/browsers-and-how-they-work)
@@ -12,6 +11,7 @@
   - [What is a Hosting?](./internet/what-is-hosting)
 
 - [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
+  - [HTML Basics](./basic-frontend-knowledge/html-basics)
 
 - [Os and General Knowledge](./os-general-knowledge/index)
 
@@ -20,7 +20,6 @@
 - [Version Control Systems](./version-control-systems)
 
 - [Databases](./databases/index)
-
   - [Relational Databases](./databases/relational-databases/index)
   - [NoSQL Databases](./databases/nosql-databases/index)
 
