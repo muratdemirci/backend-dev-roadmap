@@ -6,20 +6,20 @@
 © [Understanding HTML basics](http://www.compciv.org/topics/web/html-basics/) all rights reserved.
 
 # Contents
-- [Understanding HTML basics](#understanding-html-basics)
-- [Contents](#contents)
-- [Introduction](#introduction)
-- [Bash and strings](#bash-and-strings)
-- [Seeing your own web pages](#seeing-your-own-web-pages)
-  - [About HTML](#about-html)
-    - [The HTML Element](#the-html-element)
-    - [Let's make a webpage](#lets-make-a-webpage)
-    - [Insignificant whitespace](#insignificant-whitespace)
-    - [Tags as structure](#tags-as-structure)
-    - [Nesting HTML elements](#nesting-html-elements)
-    - [HTML attributes](#html-attributes)
-    - [Unclosed tags](#unclosed-tags)
-    - [Boilerplate HTML](#boilerplate-html)
+1. [Understanding HTML basics](#understanding-html-basics)
+2. [Contents](#contents)
+3. [Introduction](#introduction)
+4. [Bash and strings](#bash-and-strings)
+5. [Seeing your own web pages](#seeing-your-own-web-pages)
+6. [About HTML](#about-html)
+    1. [The HTML Element](#the-html-element)
+    2. [Let's make a webpage](#lets-make-a-webpage)
+    3. [Insignificant whitespace](#insignificant-whitespace)
+    4. [Tags as structure](#tags-as-structure)
+    5. [Nesting HTML elements](#nesting-html-elements)
+    6. [HTML attributes](#html-attributes)
+    7. [Unclosed tags](#unclosed-tags)
+    8. [Boilerplate HTML](#boilerplate-html)
 
 
 # Introduction
