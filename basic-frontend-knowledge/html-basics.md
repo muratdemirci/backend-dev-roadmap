@@ -1,6 +1,16 @@
+# Understanding HTML basics
+
+
+![img](./images/html-basics-header.png)
+
+© [Understanding HTML basics](http://www.compciv.org/topics/web/html-basics/) all rights reserved.
+
+# Contents
 - [Understanding HTML basics](#understanding-html-basics)
-    - [Bash and strings](#bash-and-strings)
-      - [Seeing your own web pages](#seeing-your-own-web-pages)
+- [Contents](#contents)
+- [Introduction](#introduction)
+- [Bash and strings](#bash-and-strings)
+- [Seeing your own web pages](#seeing-your-own-web-pages)
   - [About HTML](#about-html)
     - [The HTML Element](#the-html-element)
     - [Let's make a webpage](#lets-make-a-webpage)
@@ -10,10 +20,9 @@
     - [HTML attributes](#html-attributes)
     - [Unclosed tags](#unclosed-tags)
     - [Boilerplate HTML](#boilerplate-html)
-  
 
-Understanding HTML basics
-=========================
+
+# Introduction
 
 How HTML works, and some of its terminology
 
@@ -23,7 +32,7 @@ This guide covers some of the basics of HTML, assuming that you know literally n
 
 If you want to learn more beyond what I cover (and you _should_), I highly suggest starting with [Chapter 3 of Scott Murray's (free, online) book, Interactive Data Visualization for the Web](http://chimera.labs.oreilly.com/books/1230000000345/ch03.html), which covers the fundamentals and purposes of HTML, CSS, and JS.
 
-### Bash and strings
+# Bash and strings
 
 For review, read the guides/sections to:
 
@@ -54,7 +63,7 @@ To _append_ to a file, you should already be familiar with `>>`:
     EOF
    
 
-#### Seeing your own web pages
+# Seeing your own web pages
 
 If you're on **corn.stanford.edu**, think about working in your `~/WWW` directory, as all pages and files saved there can be accessible to the web.
 
@@ -123,7 +132,7 @@ And that's about all we need to know to make a _functional_ (though egregiously 
 
 If you visit http://www.stanford.edu/~your\_sunet\_id/webtest/foo.html, you should see something like this:
 
-![img](/files/images/topics/web/foo-1.html.png)
+![img](./images/foo-1.html.png)
 
 That's not very impressive, so add a couple of other paragraph elements (and some arbitrary whitespace). Again, use **nano** to copy-and-paste if you don't like the look of that `EOF`:
 
@@ -140,7 +149,7 @@ That's not very impressive, so add a couple of other paragraph elements (and som
 
 The result:
 
-![img](/files/images/topics/web/foo-2.html.png)
+![img](./images/foo-2.html.png)
 
 ### Insignificant whitespace
 
@@ -169,7 +178,7 @@ Now instead of removing whitespace, let's remove the **tags** of the elements, a
 
 Now visit `foo-no-p.html`:
 
-![img](/files/images/topics/web/foo-no-p.html.png)
+![img](./images//foo-no-p.html.png)
 
 Looks like the `<p>` tags made all the difference. By default, web browsers treat `<p>` elements as _blocks_ – each block element occupies an entire "line" of the browser window. With the `<p>` tags removed, no such blocks exist, and thus, no line-by-line separation.
 
@@ -202,7 +211,7 @@ The result:
 
 And the result, if we pipe it into a new page named `foo-em.html` – notice the italicized text:
 
-![img](/files/images/topics/web/foo-em.html.png)
+![img](./images/foo-1.html.png)
 
 There's not much to note here, except that you want your nested start and end tags to be self-contained within their **parent\_\_element. The `<p>` element is considered to be the \_\_parent** of the `<em>` element:
 
@@ -338,7 +347,8 @@ This other page will live at `www.stanford.edu/~yourname/test/more.html`
 
 Visit those two pages you created. Notice any difference (at least in a modern browser)? There likely won't be, and when it comes to metadata, such as the **attributes** of HTML, it shouldn't be visible on the page anyway.
 
-![img](/files/images/topics/web/simple-vs-more-meta.html.png)
+![img](./images/simple-vs-more-meta.html.png)
 
+Source: 
 
 http://www.compciv.org/topics/web/html-basics/
