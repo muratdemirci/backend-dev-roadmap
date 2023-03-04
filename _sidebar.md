@@ -12,6 +12,7 @@
 
 - [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
   - [HTML Basics](./basic-frontend-knowledge/html-basics)
+  - [JavaScript Basics](./basic-frontend-knowledge/javascript-basics)
 
 - [Os and General Knowledge](./os-general-knowledge/index)
 
