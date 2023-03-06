@@ -5,16 +5,16 @@
 >This document is at the introductory level. If you want to access more information about javascript, you can access it from [this](https://javascript.info) link.
 
 # Contents
-- [Understanding JavaScript basics](#understanding-javascript-basics)
-- [Contents](#contents)
-- [Introduction](#introduction)
-- [Variables](#variables)
-- [If Statements](#if-statements)
-- [Loops](#loops)
-  - [The For Loop](#the-for-loop)
-  - [The While Loop](#the-while-loop)
-- [Functions](#functions)
-- [Conclusion](#conclusion)
+1. [Understanding JavaScript basics](#understanding-javascript-basics)
+2. [Contents](#contents)
+3. [Introduction](#introduction)
+4. [Variables](#variables)
+5. [If Statements](#if-statements)
+6. [Loops](#loops)
+   1. [The For Loop](#the-for-loop)
+   2. [The While Loop](#the-while-loop)
+7. [Functions](#functions)
+8. [Conclusion](#conclusion)
 
 
 # Introduction
