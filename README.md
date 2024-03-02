@@ -1,6 +1,6 @@
 ## Backend Developer Roadmap
 
-> Step by step guide to becoming a modern backend developer in 2021
+> Step by step guide to becoming a modern backend developer in 2023
 
 Live: https://muratdemirci.github.io/backend-dev-roadmap/#/
 
@@ -18,9 +18,9 @@ Live: https://muratdemirci.github.io/backend-dev-roadmap/#/
   
 
 + [Basic Frontend Knowledge](./basic-frontend-knowledge/index)
-    * [**HTML**](./basic-frontend-knowledge/html.md)
-    * [**JavaScript**](./basic-frontend-knowledge/javascript.md)
-    * [**CSS**](./basic-frontend-knowledge/css.md)
+    * [**HTML**](./basic-frontend-knowledge/html-basic.md)
+    * [**JavaScript**](./basic-frontend-knowledge/javascript-basics.md)
+    * [**CSS**](./basic-frontend-knowledge/css-basics.md)
 
 - [Os and General Knowledge](./os-general-knowledge/index)
     * [**Terminal Usage**](./os-general-knowledge/terminal-usage.md)
