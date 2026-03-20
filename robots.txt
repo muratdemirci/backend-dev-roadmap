@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muratdemirci.github.io/backend-dev-roadmap/sitemap.xml

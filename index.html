@@ -1,19 +1,99 @@
 <!-- index.html -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta charset="UTF-8" />
+
+    <!-- SEO Meta Tags -->
+    <title>Backend Developer Roadmap 2026 — Step by Step Guide</title>
+    <meta name="description" content="A comprehensive, step-by-step guide to becoming a modern backend developer. Covers internet fundamentals, databases, APIs, caching, security, testing, CI/CD, architectural patterns, scaling, and more." />
+    <meta name="keywords" content="backend developer, roadmap, backend development, web development, programming, databases, APIs, REST, GraphQL, gRPC, microservices, Docker, Kubernetes, Node.js, Python, Java, Go, SQL, NoSQL, Redis, caching, web security, CI/CD, scaling" />
+    <meta name="author" content="Murat Demirci" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://muratdemirci.github.io/backend-dev-roadmap/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://muratdemirci.github.io/backend-dev-roadmap/" />
+    <meta property="og:title" content="Backend Developer Roadmap 2026 — Step by Step Guide" />
+    <meta property="og:description" content="A comprehensive, step-by-step guide to becoming a modern backend developer. Covers databases, APIs, security, CI/CD, architectural patterns, scaling, and more." />
+    <meta property="og:site_name" content="Backend Developer Roadmap" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Backend Developer Roadmap 2026 — Step by Step Guide" />
+    <meta name="twitter:description" content="A comprehensive, step-by-step guide to becoming a modern backend developer. Covers databases, APIs, security, CI/CD, architectural patterns, scaling, and more." />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Backend Developer Roadmap",
+      "url": "https://muratdemirci.github.io/backend-dev-roadmap/",
+      "description": "A comprehensive, step-by-step guide to becoming a modern backend developer.",
+      "author": {
+        "@type": "Person",
+        "name": "Murat Demirci",
+        "url": "https://github.com/muratdemirci"
+      },
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "educationalUse": "self-study",
+      "about": {
+        "@type": "Thing",
+        "name": "Backend Web Development"
+      }
+    }
+    </script>
+
     <link
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css"
     />
-    <title>Learn to become a modern backend developer</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">Loading...</div>
+
+    <!-- noscript fallback for SEO and non-JS users -->
+    <noscript>
+      <style>.sidebar,.sidebar-toggle{display:none!important}section.content{left:0!important}</style>
+      <div style="max-width:800px;margin:0 auto;padding:20px;font-family:sans-serif">
+        <h1>Backend Developer Roadmap</h1>
+        <p>A comprehensive, step-by-step guide to becoming a modern backend developer.</p>
+        <h2>Topics Covered</h2>
+        <ul>
+          <li><strong>Internet Fundamentals</strong> — How the internet works, HTTP, DNS, browsers, domain names, hosting</li>
+          <li><strong>Frontend Basics</strong> — HTML, CSS, JavaScript essentials for backend developers</li>
+          <li><strong>OS and General Knowledge</strong> — Processes, memory management, file systems, networking</li>
+          <li><strong>Programming Languages</strong> — JavaScript/Node.js, Python, Java, Go, Rust, C#, PHP, Ruby</li>
+          <li><strong>Version Control</strong> — Git fundamentals, branching strategies, GitHub/GitLab</li>
+          <li><strong>Databases</strong> — Relational (PostgreSQL, MySQL), NoSQL (MongoDB, Redis), N+1 problem</li>
+          <li><strong>APIs</strong> — REST, GraphQL, gRPC, authentication, API design best practices</li>
+          <li><strong>Caching</strong> — Redis, Memcached, CDN, cache strategies and eviction policies</li>
+          <li><strong>Web Security</strong> — OWASP Top 10, HTTPS/TLS, SQL injection, XSS, CSRF, OAuth 2.0</li>
+          <li><strong>Testing</strong> — Unit, integration, E2E testing, TDD, code coverage</li>
+          <li><strong>CI/CD</strong> — GitHub Actions, Jenkins, deployment strategies, infrastructure as code</li>
+          <li><strong>Design Principles</strong> — SOLID, DRY, KISS, design patterns, clean code</li>
+          <li><strong>Architectural Patterns</strong> — Monolith, microservices, serverless, CQRS, service mesh, twelve-factor app</li>
+          <li><strong>Search Engines</strong> — Elasticsearch, Solr, MeiliSearch</li>
+          <li><strong>Message Brokers</strong> — RabbitMQ, Apache Kafka, Redis Pub/Sub</li>
+          <li><strong>Containerization</strong> — Docker, Kubernetes, container orchestration</li>
+          <li><strong>GraphQL</strong> — Schema, queries, mutations, subscriptions, DataLoader</li>
+          <li><strong>Graph Databases</strong> — Neo4j, Cypher query language, use cases</li>
+          <li><strong>Real-time Communication</strong> — WebSockets, Server-Sent Events</li>
+          <li><strong>Web Servers</strong> — Nginx, Apache, Caddy, reverse proxy, load balancing</li>
+          <li><strong>Scaling</strong> — Horizontal/vertical scaling, sharding, replication, circuit breaker, monitoring, telemetry</li>
+        </ul>
+        <p>Please enable JavaScript to use the interactive version of this roadmap.</p>
+        <p>Source: <a href="https://github.com/muratdemirci/backend-dev-roadmap">github.com/muratdemirci/backend-dev-roadmap</a></p>
+      </div>
+    </noscript>
+
     <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
       mermaid.initialize({ startOnLoad: false, theme: "default" });
@@ -26,6 +106,39 @@
         loadSidebar: true,
         subMaxLevel: 3,
         auto2top: true,
+        // Dynamic page title for SEO
+        nameLink: '/',
+        themeColor: '#42b983',
+        plugins: [
+          function (hook) {
+            // Update page title dynamically
+            hook.doneEach(function () {
+              var title = document.querySelector('.markdown-section h1');
+              if (title) {
+                document.title = title.textContent + ' — Backend Developer Roadmap';
+              } else {
+                document.title = 'Backend Developer Roadmap ' + new Date().getFullYear();
+              }
+
+              // Mermaid rendering
+              var els = document.querySelectorAll(".mermaid");
+              if (els.length > 0) {
+                els.forEach(function (el) {
+                  el.removeAttribute("data-processed");
+                });
+                mermaid.run({ nodes: els });
+              }
+            });
+
+            // Update canonical URL on page change
+            hook.doneEach(function () {
+              var canonical = document.querySelector('link[rel="canonical"]');
+              if (canonical) {
+                canonical.href = 'https://muratdemirci.github.io/backend-dev-roadmap/' + window.location.hash;
+              }
+            });
+          },
+        ],
         markdown: {
           renderer: {
             code: function (code, lang) {
@@ -36,19 +149,6 @@
             },
           },
         },
-        plugins: [
-          function (hook) {
-            hook.doneEach(function () {
-              var els = document.querySelectorAll(".mermaid");
-              if (els.length > 0) {
-                els.forEach(function (el) {
-                  el.removeAttribute("data-processed");
-                });
-                mermaid.run({ nodes: els });
-              }
-            });
-          },
-        ],
       };
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
@@ -59,7 +159,6 @@
        Only visible at <= 768px
        ═══════════════════════════════════════════════════ */
     (function() {
-      // 1) Inject CSS
       var css = document.createElement('style');
       css.textContent = '\
 @media screen and (max-width: 768px) {\
@@ -127,7 +226,6 @@
 ';
       document.head.appendChild(css);
 
-      // 2) Menu data
       var menu = [
         {t:'Table of Contents', h:'#/'},
         {t:'Internet', children:[
@@ -179,7 +277,6 @@
         ]}
       ];
 
-      // 3) Build HTML
       function buildMenu() {
         var html = '';
         menu.forEach(function(item) {
@@ -196,7 +293,6 @@
         return html;
       }
 
-      // 4) Inject DOM
       var fab = document.createElement('div');
       fab.id = 'mmFab';
       fab.innerHTML = '&#9776;';
@@ -211,7 +307,6 @@
       pn.innerHTML = '<div class="mm-hdr">Backend Developer Roadmap</div><ul class="mm-list">' + buildMenu() + '</ul>';
       document.body.appendChild(pn);
 
-      // 5) Logic
       function openMenu() {
         pn.classList.add('open');
         ov.classList.add('open');
@@ -232,7 +327,6 @@
       });
       ov.addEventListener('click', closeMenu);
 
-      // Accordion
       pn.addEventListener('click', function(e) {
         var a = e.target.closest('li.mm-p > a');
         if (a) {
@@ -240,7 +334,6 @@
           a.parentElement.classList.toggle('exp');
           return;
         }
-        // Navigation link
         var link = e.target.closest('.mm-sub a, .mm-list > li:not(.mm-p) > a');
         if (link) {
           closeMenu();
