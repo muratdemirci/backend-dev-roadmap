@@ -30,6 +30,27 @@ To solve all those problems we use human-readable addresses called domain names.
 
 A domain name has a simple structure made of several parts (it might be one part only, two, three…), separated by dots and **read from right to left**:
 
+```mermaid
+graph LR
+    subgraph "Domain Name: mail.info.linuxhint.com"
+        D["mail"] --- C["info"] --- B["linuxhint"] --- A[".com"]
+    end
+
+    A -.- TLD["TLD<br/>(Top-Level Domain)"]
+    B -.- SLD["SLD<br/>(Second-Level Domain)"]
+    C -.- SUB2["Subdomain<br/>(2nd level)"]
+    D -.- SUB3["Subdomain<br/>(3rd level)"]
+
+    style A fill:#f44336,color:#fff
+    style B fill:#FF9800,color:#fff
+    style C fill:#2196F3,color:#fff
+    style D fill:#4CAF50,color:#fff
+    style TLD fill:#f44336,color:#fff
+    style SLD fill:#FF9800,color:#fff
+    style SUB2 fill:#2196F3,color:#fff
+    style SUB3 fill:#4CAF50,color:#fff
+```
+
 ![Anatomy of the MDN domain name](images/wiadn_structure.png)
 
 Each of those parts provides specific information about the whole domain name.

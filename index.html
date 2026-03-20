@@ -14,17 +14,239 @@
   </head>
   <body>
     <div id="app"></div>
+    <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
+      mermaid.initialize({ startOnLoad: false, theme: "default" });
+
       window.$docsify = {
         el: "#app",
         repo: "https://github.com/muratdemirci/backend-dev-roadmap/tree/dio",
-        name: `<span style="font-size: 17px; background: inherit;">Backend Developer Roadmap ${new Date().getFullYear()} </span>`,
+        name: '<span style="font-size: 17px; background: inherit;">Backend Developer Roadmap ' + new Date().getFullYear() + ' </span>',
         loadNavbar: true,
         loadSidebar: true,
+        subMaxLevel: 3,
+        auto2top: true,
+        markdown: {
+          renderer: {
+            code: function (code, lang) {
+              if (lang === "mermaid") {
+                return '<div class="mermaid">' + code + "</div>";
+              }
+              return this.origin.code.apply(this, arguments);
+            },
+          },
+        },
+        plugins: [
+          function (hook) {
+            hook.doneEach(function () {
+              var els = document.querySelectorAll(".mermaid");
+              if (els.length > 0) {
+                els.forEach(function (el) {
+                  el.removeAttribute("data-processed");
+                });
+                mermaid.run({ nodes: els });
+              }
+            });
+          },
+        ],
       };
-      console.log(`it ain't work jack`);
-      // note for murat: cd location && docsify serve
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+
+    <script>
+    /* ═══════════════════════════════════════════════════
+       MOBILE MENU — injected AFTER docsify loads
+       Only visible at <= 768px
+       ═══════════════════════════════════════════════════ */
+    (function() {
+      // 1) Inject CSS
+      var css = document.createElement('style');
+      css.textContent = '\
+@media screen and (max-width: 768px) {\
+  .sidebar, .sidebar-toggle { display:none!important; width:0!important; }\
+  body .sidebar { transform:translateX(-999px)!important; }\
+  section.content, .content { left:0!important; padding-left:0!important; width:100%!important; }\
+  .markdown-section { max-width:100%!important; padding:20px 16px!important; }\
+  #mmFab { display:block!important; }\
+  #mmOverlay { display:block!important; }\
+  #mmPanel { display:block!important; }\
+}\
+#mmFab {\
+  display:none; position:fixed; bottom:24px; right:24px; z-index:100000;\
+  width:52px; height:52px; border-radius:50%; border:none;\
+  background:#42b983; color:#fff; font-size:26px; line-height:52px;\
+  text-align:center; cursor:pointer;\
+  box-shadow:0 4px 14px rgba(0,0,0,0.35);\
+  -webkit-tap-highlight-color:transparent;\
+}\
+#mmFab.open { background:#e74c3c; }\
+#mmOverlay {\
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;\
+  z-index:99998; background:rgba(0,0,0,0.5);\
+  opacity:0; pointer-events:none; transition:opacity .25s;\
+}\
+#mmOverlay.open { opacity:1; pointer-events:auto; }\
+#mmPanel {\
+  display:none; position:fixed; top:0; left:0; z-index:99999;\
+  width:85%; max-width:320px; height:100%; background:#fff;\
+  overflow-y:auto; -webkit-overflow-scrolling:touch;\
+  transform:translateX(-100%); transition:transform .3s ease;\
+  box-shadow:4px 0 20px rgba(0,0,0,0.2);\
+}\
+#mmPanel.open { transform:translateX(0); }\
+.mm-hdr {\
+  padding:16px 20px; font-size:16px; font-weight:700;\
+  color:#42b983; border-bottom:2px solid #42b983; background:#f8fdf9;\
+}\
+.mm-list { list-style:none; margin:0; padding:0; }\
+.mm-list > li { border-bottom:1px solid #f0f0f0; }\
+.mm-list > li > a {\
+  display:block; padding:12px 20px; color:#2c3e50;\
+  text-decoration:none; font-size:14px; font-weight:600;\
+}\
+.mm-list > li > a:active { background:#e8f5e9; color:#42b983; }\
+.mm-list > li.mm-p > a { display:flex; justify-content:space-between; align-items:center; }\
+.mm-list > li.mm-p > a .arr {\
+  font-size:10px; color:#aaa; transition:transform .2s; flex-shrink:0; margin-left:8px;\
+}\
+.mm-list > li.mm-p.exp > a .arr { transform:rotate(90deg); color:#42b983; }\
+.mm-list > li.mm-p.exp > a { color:#42b983; background:#f8fdf9; }\
+.mm-sub {\
+  list-style:none; margin:0; padding:0;\
+  max-height:0; overflow:hidden; transition:max-height .3s ease; background:#fafafa;\
+}\
+.mm-list > li.mm-p.exp > .mm-sub { max-height:600px; }\
+.mm-sub li { border-bottom:1px solid #f5f5f5; }\
+.mm-sub li:last-child { border-bottom:none; }\
+.mm-sub li a {\
+  display:block; padding:10px 20px 10px 40px; color:#555;\
+  text-decoration:none; font-size:13px; font-weight:400;\
+  border-left:3px solid #ddd;\
+}\
+.mm-sub li a:active { background:#e8f5e9; color:#42b983; border-left-color:#42b983; }\
+';
+      document.head.appendChild(css);
+
+      // 2) Menu data
+      var menu = [
+        {t:'Table of Contents', h:'#/'},
+        {t:'Internet', children:[
+          {t:'How Does the Internet Work?', h:'#/internet/how-does-the-internet-work'},
+          {t:'What is HTTP?', h:'#/internet/what-is-http'},
+          {t:'Browsers and How They Work', h:'#/internet/browsers-and-how-they-work'},
+          {t:'DNS and How It Works', h:'#/internet/dns-and-how-it-works'},
+          {t:'What is a Domain Name?', h:'#/internet/what-is-domain-name'},
+          {t:'What is Hosting?', h:'#/internet/what-is-hosting'}
+        ]},
+        {t:'Basic Frontend Knowledge', children:[
+          {t:'HTML Basics', h:'#/basic-frontend-knowledge/html-basics'},
+          {t:'JavaScript Basics', h:'#/basic-frontend-knowledge/javascript-basics'},
+          {t:'CSS Basics', h:'#/basic-frontend-knowledge/css-basics'}
+        ]},
+        {t:'OS and General Knowledge', h:'#/os-general-knowledge/index'},
+        {t:'Learn a Programming Language', h:'#/learn-a-programming-language/index'},
+        {t:'Version Control Systems', h:'#/version-control-systems/index'},
+        {t:'Databases', children:[
+          {t:'PostgreSQL', h:'#/databases/postgresql'},
+          {t:'MongoDB', h:'#/databases/mongodb'},
+          {t:'Relational Databases', h:'#/databases/relational-databases/index'},
+          {t:'NoSQL Databases', h:'#/databases/nosql-databases/index'},
+          {t:'N+1 Problem', h:'#/databases/n-plus-1-problem/index'}
+        ]},
+        {t:'Learn about APIs', h:'#/learn-about-api-s/index'},
+        {t:'gRPC', h:'#/grpc/index'},
+        {t:'Caching', h:'#/caching/index'},
+        {t:'Web Security', h:'#/web-security/index'},
+        {t:'Testing', h:'#/testing/index'},
+        {t:'CI / CD', h:'#/ci-cd/index'},
+        {t:'Design Principles', h:'#/design-and-development-principles/index'},
+        {t:'Architectural Patterns', h:'#/architectural-patterns/index'},
+        {t:'Search Engines', h:'#/search-engines/index'},
+        {t:'Message Brokers', h:'#/message-brokers/index'},
+        {t:'Containerization vs Virtualization', h:'#/containerization-virtualization/index'},
+        {t:'GraphQL', h:'#/graphql/index'},
+        {t:'Graph Databases', h:'#/graph-databases/index'},
+        {t:'WebSockets', h:'#/websockets/index'},
+        {t:'Server-Sent Events', h:'#/server-sent-events/index'},
+        {t:'Web Servers', h:'#/web-servers/index'},
+        {t:'Scaling', children:[
+          {t:'Graceful Degradation', h:'#/scaling/mitigation-strategies/graceful-degradation'},
+          {t:'Throttling', h:'#/scaling/mitigation-strategies/throttling'},
+          {t:'Backpressure', h:'#/scaling/mitigation-strategies/backpressure'},
+          {t:'Circuit Breaker', h:'#/scaling/mitigation-strategies/circuit-breaker'},
+          {t:'Monitoring', h:'#/scaling/understand-the-diff/monitoring'},
+          {t:'Telemetry', h:'#/scaling/understand-the-diff/telemetry'}
+        ]}
+      ];
+
+      // 3) Build HTML
+      function buildMenu() {
+        var html = '';
+        menu.forEach(function(item) {
+          if (item.children) {
+            html += '<li class="mm-p"><a href="javascript:void(0)">' + item.t + ' <span class="arr">&#9654;</span></a><ul class="mm-sub">';
+            item.children.forEach(function(c) {
+              html += '<li><a href="' + c.h + '">' + c.t + '</a></li>';
+            });
+            html += '</ul></li>';
+          } else {
+            html += '<li><a href="' + item.h + '">' + item.t + '</a></li>';
+          }
+        });
+        return html;
+      }
+
+      // 4) Inject DOM
+      var fab = document.createElement('div');
+      fab.id = 'mmFab';
+      fab.innerHTML = '&#9776;';
+      document.body.appendChild(fab);
+
+      var ov = document.createElement('div');
+      ov.id = 'mmOverlay';
+      document.body.appendChild(ov);
+
+      var pn = document.createElement('div');
+      pn.id = 'mmPanel';
+      pn.innerHTML = '<div class="mm-hdr">Backend Developer Roadmap</div><ul class="mm-list">' + buildMenu() + '</ul>';
+      document.body.appendChild(pn);
+
+      // 5) Logic
+      function openMenu() {
+        pn.classList.add('open');
+        ov.classList.add('open');
+        fab.classList.add('open');
+        fab.innerHTML = '&#10005;';
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        pn.classList.remove('open');
+        ov.classList.remove('open');
+        fab.classList.remove('open');
+        fab.innerHTML = '&#9776;';
+        document.body.style.overflow = '';
+      }
+
+      fab.addEventListener('click', function() {
+        pn.classList.contains('open') ? closeMenu() : openMenu();
+      });
+      ov.addEventListener('click', closeMenu);
+
+      // Accordion
+      pn.addEventListener('click', function(e) {
+        var a = e.target.closest('li.mm-p > a');
+        if (a) {
+          e.preventDefault();
+          a.parentElement.classList.toggle('exp');
+          return;
+        }
+        // Navigation link
+        var link = e.target.closest('.mm-sub a, .mm-list > li:not(.mm-p) > a');
+        if (link) {
+          closeMenu();
+        }
+      });
+    })();
+    </script>
   </body>
 </html>

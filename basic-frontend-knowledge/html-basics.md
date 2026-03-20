@@ -178,7 +178,7 @@ Now instead of removing whitespace, let's remove the **tags** of the elements, a
 
 Now visit `foo-no-p.html`:
 
-![img](./images//foo-no-p.html.png)
+![img](./images/foo-no-p.html.png)
 
 Looks like the `<p>` tags made all the difference. By default, web browsers treat `<p>` elements as _blocks_ – each block element occupies an entire "line" of the browser window. With the `<p>` tags removed, no such blocks exist, and thus, no line-by-line separation.
 
@@ -269,7 +269,27 @@ Some tags do not need a corresponding **end** tag. One example is the `<img>` ta
     <img src="http://placekitten.com/g/300/200">
    
 
-On a conceptual level, this makes some sense: an _image_ is a standalone element, it shouldn't enclose a text element, nor any other kind of element. Same thing with the `<br>` tag, which denotes a **line-break**. Which tags _don't_ need to be closed? It's a matter of memorization, but it happens to only be a few (fnd if you do include an unnecessary closing tag, it won't break the page).
+On a conceptual level, this makes some sense: an _image_ is a standalone element, it shouldn't enclose a text element, nor any other kind of element. Same thing with the `<br>` tag, which denotes a **line-break**. Which tags _don't_ need to be closed? It's a matter of memorization, but it happens to only be a few (and if you do include an unnecessary closing tag, it won't break the page).
+
+### HTML Document Structure
+
+The following diagram shows the tree structure of a typical HTML document:
+
+```mermaid
+graph TD
+    A["!DOCTYPE html"] --> B["html"]
+    B --> C["head"]
+    B --> D["body"]
+    C --> E["title"]
+    C --> F["meta"]
+    C --> G["link"]
+    D --> H["h1"]
+    D --> I["p"]
+    D --> J["div"]
+    J --> K["a"]
+    J --> L["img"]
+    D --> M["script"]
+```
 
 ### Boilerplate HTML
 

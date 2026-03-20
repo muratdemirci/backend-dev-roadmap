@@ -121,6 +121,33 @@ The browser's main components are ([1.1](#1-1)):
 
 Figure : Browser components
 
+```mermaid
+graph TB
+    UI["User Interface<br/>(Address bar, Back/Forward, Bookmarks)"]
+    BE["Browser Engine"]
+    RE["Rendering Engine"]
+    NET["Networking<br/>(HTTP, DNS)"]
+    JS["JavaScript<br/>Interpreter"]
+    UIB["UI Backend"]
+    DS["Data Storage<br/>(Cookies, localStorage, IndexedDB)"]
+
+    UI --> BE
+    BE --> RE
+    RE --> NET
+    RE --> JS
+    RE --> UIB
+    BE --> DS
+    NET --> DS
+
+    style UI fill:#4CAF50,color:#fff
+    style BE fill:#2196F3,color:#fff
+    style RE fill:#FF9800,color:#fff
+    style NET fill:#9C27B0,color:#fff
+    style JS fill:#f44336,color:#fff
+    style UIB fill:#00BCD4,color:#fff
+    style DS fill:#795548,color:#fff
+```
+
 It is important to note that browsers such as Chrome run multiple instances of the rendering engine: one for each tab. Each tab runs in a separate process.
 
 ## The rendering engine
@@ -140,6 +167,23 @@ WebKit is an open source rendering engine which started as an engine for the Lin
 The rendering engine will start getting the contents of the requested document from the networking layer. This will usually be done in 8kB chunks.
 
 After that, this is the basic flow of the rendering engine:
+
+```mermaid
+graph LR
+    A["HTML<br/>Parsing"] -->|DOM Tree| B["CSS<br/>Parsing"]
+    B -->|CSSOM Tree| C["Render Tree<br/>Construction"]
+    A -->|DOM Tree| C
+    C --> D["Layout<br/>(Reflow)"]
+    D --> E["Paint"]
+    E --> F["Composite<br/>& Display"]
+
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style C fill:#FF9800,color:#fff
+    style D fill:#9C27B0,color:#fff
+    style E fill:#f44336,color:#fff
+    style F fill:#00BCD4,color:#fff
+```
 
 ![](images/bahtw_flow.png)
 

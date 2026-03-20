@@ -17,6 +17,41 @@
 8. [Conclusion](#conclusion)
 
 
+### JavaScript Execution Flow
+
+When a browser loads a page with JavaScript, the following execution flow occurs:
+
+```mermaid
+graph TD
+    A["Load HTML Document"] --> B["Parse HTML & Build DOM"]
+    B --> C["Encounter script tag"]
+    C --> D["Download JavaScript"]
+    D --> E["Parse & Compile JS"]
+    E --> F["Execute JS Code"]
+    F --> G["Variable Declarations<br/>Hoisted to top"]
+    F --> H["Function Declarations<br/>Hoisted to top"]
+    F --> I["Execute Statements<br/>Line by line"]
+    I --> J["Event Listeners<br/>Registered"]
+    J --> K["Wait for Events"]
+    K --> L["Event Loop Picks<br/>Callback from Queue"]
+    L --> K
+```
+
+### The Event Loop
+
+JavaScript is single-threaded, but it can handle asynchronous operations through the event loop:
+
+```mermaid
+graph TD
+    A["Call Stack<br/>Executes synchronous code"] -->|"Async operation<br/>(setTimeout, fetch, etc.)"| B["Web APIs<br/>Browser handles async tasks"]
+    B -->|"Callback ready"| C["Callback Queue<br/>(Task Queue)"]
+    B -->|"Promise resolved"| D["Microtask Queue<br/>(Promises, async/await)"]
+    D -->|"Microtasks run first"| E{"Event Loop<br/>Is Call Stack empty?"}
+    C -->|"Tasks run after microtasks"| E
+    E -->|"Yes"| A
+    E -->|"No, wait"| E
+```
+
 # Introduction
 JavaScript is the language of the web. Almost every site you visit in your web browser will be using it in some manner to enhance the user experience. This is why JavaScript is such a desirable component of the modern programmer’s toolkit. There really is no substitute for this flexible language if you want to create brilliant browser-based experiences capable of hooking in customers, clients, and prospective employers. 
 
@@ -103,7 +138,7 @@ So we’ve got variables down, but how do we use them to do cool and awesome thi
 
 An ‘if statement’ is a way in which a programmer can build decision-based logic into their code. This means that we can tell our programs to do something based on a certain condition. Let’s look at an example.
 ```javascript
-If (10 > 20) {
+if (10 > 20) {
   // Run this code
 } else {
   // Run this code

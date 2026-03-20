@@ -1,4 +1,4 @@
-# Dns and How It Works?
+# DNS and How It Works?
 
 _© 2020 [John Otieno](https://linuxhint.com/author/otienojohn/) @ [linuxhint.com](https://linuxhint.com/), all rights reserved_
 
@@ -17,7 +17,7 @@ _© 2020 [John Otieno](https://linuxhint.com/author/otienojohn/) @ [linuxhint.co
 9.  [AXFR Records](#axfr-records)
 10. [CNAME Records](#cname-records)
 11. [CAA Records](#caa-records)
-12. [DKIM Records](#dkim-recordsw)
+12. [DKIM Records](#dkim-records)
 13. [MX Records](#mx-records)
 14. [NS Records](#ns-records)
 15. [PTR Records](#ptr-records)
@@ -120,6 +120,25 @@ The root nameserver then replies with an IP address for the specified TLD. The D
 
 Once the ISP reads the domain’s IP address, for example, linuxhint.com, it replies to your browser, allowing you to access the webserver.
 
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Resolver as ISP DNS Resolver
+    participant Root as Root Nameserver
+    participant TLD as TLD Nameserver (.com)
+    participant Auth as Authoritative Nameserver
+
+    Browser->>Resolver: Where is linuxhint.com?
+    Resolver->>Root: Query for linuxhint.com
+    Root-->>Resolver: Go to .com TLD server
+    Resolver->>TLD: Query for linuxhint.com
+    TLD-->>Resolver: Go to linuxhint.com nameserver
+    Resolver->>Auth: Query for linuxhint.com
+    Auth-->>Resolver: IP is 64.91.238.144
+    Resolver-->>Browser: IP is 64.91.238.144
+    Note over Resolver: Cache result for future lookups
+```
+
 ![](images/dns2.png)
 
 It’s good to note that the DNS resolution process only happens if the ISP DNS resolver has no record of the domain requested. In most cases, ISP performs DNS cache for previously queried domains, which leads to faster DNS lookups and less strain on the DNS servers.
@@ -131,6 +150,41 @@ Although caching is a good thing, it can sometimes lead to issues, especially DN
 Since you now know how DNS works, let’s discuss the types of DNS records.
 
 ## Types of DNS Records
+
+```mermaid
+graph TB
+    DNS["DNS Record Types"]
+    DNS --> ADDR["Address Records"]
+    DNS --> MAIL["Mail Records"]
+    DNS --> NAME["Name Records"]
+    DNS --> SEC["Security Records"]
+    DNS --> OTHER["Other Records"]
+
+    ADDR --> A["A<br/>(IPv4)"]
+    ADDR --> AAAA["AAAA<br/>(IPv6)"]
+    ADDR --> PTR["PTR<br/>(Reverse DNS)"]
+
+    MAIL --> MX["MX<br/>(Mail Exchange)"]
+    MAIL --> SPF["SPF<br/>(Sender Policy)"]
+    MAIL --> DKIM["DKIM<br/>(Mail Auth)"]
+
+    NAME --> CNAME["CNAME<br/>(Alias)"]
+    NAME --> NS["NS<br/>(Nameserver)"]
+    NAME --> SOA["SOA<br/>(Start of Authority)"]
+
+    SEC --> CAA["CAA<br/>(Cert Authority)"]
+    SEC --> TXT["TXT<br/>(Verification)"]
+
+    OTHER --> SRV["SRV<br/>(Service)"]
+    OTHER --> AXFR["AXFR<br/>(Zone Transfer)"]
+
+    style DNS fill:#2196F3,color:#fff
+    style ADDR fill:#4CAF50,color:#fff
+    style MAIL fill:#FF9800,color:#fff
+    style NAME fill:#9C27B0,color:#fff
+    style SEC fill:#f44336,color:#fff
+    style OTHER fill:#795548,color:#fff
+```
 
 Here’re the main types of DNS records:
 

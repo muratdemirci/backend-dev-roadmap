@@ -49,6 +49,40 @@ These things can greatly impact the functioning of a professional site, which is
 
 There are different types of web hosting services available in the market. They differ in aspects such as server speed, disk space, network bandwidth, and various secondary features. Depending on your specific circumstances, you can choose a plan with the resources that fit your needs and budget. Below are a few common forms of web hosting.
 
+```mermaid
+graph TB
+    subgraph "Shared Hosting"
+        S1[Server]
+        S1 --- SA[Site A]
+        S1 --- SB[Site B]
+        S1 --- SC[Site C]
+        S1 --- SD[Site D]
+        S1 --- SE["...100s more"]
+    end
+    subgraph "VPS Hosting"
+        V1[Server]
+        V1 --- VA["VPS 1<br/>(Site A)"]
+        V1 --- VB["VPS 2<br/>(Site B)"]
+        V1 --- VC["VPS 3<br/>(Site C)"]
+    end
+    subgraph "Dedicated Hosting"
+        D1[Server]
+        D1 --- DA["Single Site<br/>(Full Resources)"]
+    end
+    subgraph "Cloud Hosting"
+        CS1[Server 1] --- CA[Site A]
+        CS2[Server 2] --- CA
+        CS3[Server 3] --- CA
+    end
+
+    style S1 fill:#f44336,color:#fff
+    style V1 fill:#FF9800,color:#fff
+    style D1 fill:#4CAF50,color:#fff
+    style CS1 fill:#2196F3,color:#fff
+    style CS2 fill:#2196F3,color:#fff
+    style CS3 fill:#2196F3,color:#fff
+```
+
 Shared hosting: is a type of web hosting where a single server is shared by hundreds of websites. Because the servers are shared, their resources are divided between multiple websites, and result in lower server speed and higher response times. This is good for small websites, but established businesses and professionals will probably require something more powerful.
 
 VPS hosting: via a virtual private server (VPS), is a virtual section with set resources created within a physical server. Unlike shared hosting, each server is divided into only a few virtual servers and shared between five or 10 different websites. This reduces server load, and gives each website ample resources to function. Virtual servers are therefore costlier than shared servers.

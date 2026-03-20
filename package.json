@@ -1,0 +1,28 @@
+{
+  "name": "backend-dev-roadmap-generator",
+  "version": "1.0.0",
+  "description": "Backend Developer Roadmap için otomatik bölüm oluşturucu",
+  "main": "generator.js",
+  "scripts": {
+    "generate": "node generator.js",
+    "doc-generate": "node generator.js",
+    "start": "docsify serve",
+    "dev": "docsify serve"
+  },
+  "keywords": [
+    "backend",
+    "roadmap",
+    "docsify",
+    "generator",
+    "documentation"
+  ],
+  "author": "Murat Demirci",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  },
+  "bin": {
+    "roadmap-generator": "./generator.js"
+  }
+}

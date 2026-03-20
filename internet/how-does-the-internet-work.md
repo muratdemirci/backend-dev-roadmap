@@ -59,7 +59,7 @@ If you connect to the Internet through an Internet Service Provider (ISP), you a
   
 ## Protocol Stacks and Packets
 
-So your computer is connected to the Internet and has a unique address. How does it 'talk' to other computers connected to the Internet? An example should serve here: Let's say your IP address is 1.2.3.4 and you want to send a message to the computer 5.6.7.8. The message you want to send is "Hello computer 5.6.7.8!". Obviously, the message must be transmitted over whatever kind of wire connects your computer to the Internet. Let's say you've dialed into your ISP from home and the message must be transmitted over the phone line. Therefore the message must be translated from alphabetic text into electronic signals, transmitted over the Internet, then translated back into alphabetic text. How is this accomplished? Through the use of a **protocol stack**. Every computer needs one to communicate on the Internet and it is usually built into the computer's operating system (i.e. Windows, Unix, etc.). The protocol stack used on the Internet is refered to as the TCP/IP protocol stack because of the two major communication protocols used. The TCP/IP stack looks like this:  
+So your computer is connected to the Internet and has a unique address. How does it 'talk' to other computers connected to the Internet? An example should serve here: Let's say your IP address is 1.2.3.4 and you want to send a message to the computer 5.6.7.8. The message you want to send is "Hello computer 5.6.7.8!". Obviously, the message must be transmitted over whatever kind of wire connects your computer to the Internet. Let's say you've dialed into your ISP from home and the message must be transmitted over the phone line. Therefore the message must be translated from alphabetic text into electronic signals, transmitted over the Internet, then translated back into alphabetic text. How is this accomplished? Through the use of a **protocol stack**. Every computer needs one to communicate on the Internet and it is usually built into the computer's operating system (i.e. Windows, Unix, etc.). The protocol stack used on the Internet is referred to as the TCP/IP protocol stack because of the two major communication protocols used. The TCP/IP stack looks like this:  
 
 | Protocol Layer | Comments |
 |--|--|
@@ -68,8 +68,19 @@ So your computer is connected to the Internet and has a unique address. How does
 | Internet Protocol Layer | IP directs packets to a specific computer using an IP address. |
 | Hardware Layer |  Converts binary packet data to network signals and back. (E.g. ethernet network card, modem for phone lines, etc.)|
 
-  
-  
+```mermaid
+graph TB
+    A["Application Layer<br/>(HTTP, FTP, SMTP)"] --> B["TCP Layer<br/>(Port Numbers)"]
+    B --> C["IP Layer<br/>(IP Addresses)"]
+    C --> D["Hardware Layer<br/>(Electrical Signals)"]
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style C fill:#FF9800,color:#fff
+    style D fill:#9C27B0,color:#fff
+```
+
+
+
 If we were to follow the path that the message "Hello computer 5.6.7.8!" took from our computer to the computer with IP address 5.6.7.8, it would happen something like this:  
   
 
@@ -77,16 +88,30 @@ If we were to follow the path that the message "Hello computer 5.6.7.8!" took fr
 
 Diagram 2
 
-1.  The message would start at the top of the protocol stack on your computer and work it's way downward.
+1.  The message would start at the top of the protocol stack on your computer and work its way downward.
 2.  If the message to be sent is long, each stack layer that the message passes through may break the message up into smaller chunks of data. This is because data sent over the Internet (and most computer networks) are sent in manageable chunks. On the Internet, these chunks of data are known as **packets**.
 3.  The packets would go through the Application Layer and continue to the TCP layer. Each packet is assigned a **port number**. Ports will be explained later, but suffice to say that many programs may be using the TCP/IP stack and sending messages. We need to know which program on the destination computer needs to receive the message because it will be listening on a specific port.
-4.  After going through the TCP layer, the packets proceed to the IP layer. This is where each packet receives it's destination address, 5.6.7.8.
+4.  After going through the TCP layer, the packets proceed to the IP layer. This is where each packet receives its destination address, 5.6.7.8.
 5.  Now that our message packets have a port number and an IP address, they are ready to be sent over the Internet. The hardware layer takes care of turning our packets containing the alphabetic text of our message into electronic signals and transmitting them over the phone line.
 6.  On the other end of the phone line your ISP has a direct connection to the Internet. The ISPs **router** examines the destination address in each packet and determines where to send it. Often, the packet's next stop is another router. More on routers and Internet infrastructure later.
 7.  Eventually, the packets reach computer 5.6.7.8. Here, the packets start at the bottom of the destination computer's TCP/IP stack and work upwards.
 8.  As the packets go upwards through the stack, all routing data that the sending computer's stack added (such as IP address and port number) is stripped from the packets.
 9.  When the data reaches the top of the stack, the packets have been re-assembled into their original form, "Hello computer 5.6.7.8!"
 
+```mermaid
+graph LR
+    subgraph "Sending Computer (1.2.3.4)"
+        A1[Application Layer] --> A2[TCP Layer]
+        A2 --> A3[IP Layer]
+        A3 --> A4[Hardware Layer]
+    end
+    A4 -->|"Packets travel<br/>through the Internet"| B4
+    subgraph "Receiving Computer (5.6.7.8)"
+        B4[Hardware Layer] --> B3[IP Layer]
+        B3 --> B2[TCP Layer]
+        B2 --> B1[Application Layer]
+    end
+```
 
 ## Networking Infrastructure
 
@@ -99,7 +124,7 @@ Diagram 3
 
 Here we see Diagram 1 redrawn with more detail. The physical connection through the phone network to the Internet Service Provider might have been easy to guess, but beyond that might bear some explanation.
 
-The ISP maintains a pool of modems for their dial-in customers. This is managed by some form of computer (usually a dedicated one) which controls data flow from the modem pool to a backbone or dedicated line router. This setup may be refered to as a port server, as it 'serves' access to the network. Billing and usage information is usually collected here as well.
+The ISP maintains a pool of modems for their dial-in customers. This is managed by some form of computer (usually a dedicated one) which controls data flow from the modem pool to a backbone or dedicated line router. This setup may be referred to as a port server, as it 'serves' access to the network. Billing and usage information is usually collected here as well.
 
 After your packets traverse the phone network and your ISP's local equipment, they are routed onto the ISP's backbone or a backbone the ISP buys bandwidth from. From here the packets will usually journey through several routers and over several backbones, dedicated lines, and other networks until they find their destination, the computer with address 5.6.7.8. But wouldn't it would be nice if we knew the exact route our packets were taking over the Internet? As it turns out, there is a way...
 
@@ -122,7 +147,7 @@ This is not a true representation of an actual piece of the Internet. Diagram 4 
 
 ## The Internet Routing Hierarchy
 
-So how do packets find their way across the Internet? Does every computer connected to the Internet know where the other computers are? Do packets simply get 'broadcast' to every computer on the Internet? The answer to both the preceeding questions is 'no'. No computer knows where any of the other computers are, and packets do not get sent to every computer. The information used to get packets to their destinations are contained in routing tables kept by each router connected to the Internet.
+So how do packets find their way across the Internet? Does every computer connected to the Internet know where the other computers are? Do packets simply get 'broadcast' to every computer on the Internet? The answer to both the preceding questions is 'no'. No computer knows where any of the other computers are, and packets do not get sent to every computer. The information used to get packets to their destinations are contained in routing tables kept by each router connected to the Internet.
 
 **Routers are packet switches.** A router is usually connected between networks to route packets between them. Each router knows about it's sub-networks and which IP addresses they use. The router usually doesn't know what IP addresses are 'above' it. Examine Diagram 5 below. The black boxes connecting the backbones are routers. The larger NSP backbones at the top are connected at a NAP. Under them are several sub-networks, and under them, more sub-networks. At the bottom are two local area networks with computers attached.  
   
@@ -147,6 +172,24 @@ Many computers connected to the Internet host part of the DNS database and the s
 Diagram 6
 
 The Domain Name Service is structured as a hierarchy similar to the IP routing hierarchy. The computer requesting a name resolution will be re-directed 'up' the hierarchy until a DNS server is found that can resolve the domain name in the request. Figure 6 illustrates a portion of the hierarchy. At the top of the tree are the domain roots. Some of the older, more common domains are seen near the top. What is not shown are the multitude of DNS servers around the world which form the rest of the hierarchy.
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant DNS Resolver
+    participant Root DNS
+    participant TLD DNS
+    participant Auth DNS
+
+    Browser->>DNS Resolver: What is the IP of www.example.com?
+    DNS Resolver->>Root DNS: Query root for .com
+    Root DNS-->>DNS Resolver: Refer to .com TLD server
+    DNS Resolver->>TLD DNS: Query .com for example.com
+    TLD DNS-->>DNS Resolver: Refer to example.com nameserver
+    DNS Resolver->>Auth DNS: Query for www.example.com
+    Auth DNS-->>DNS Resolver: IP is 93.184.216.34
+    DNS Resolver-->>Browser: IP is 93.184.216.34
+```
 
 When an Internet connection is setup (e.g. for a LAN or Dial-Up Networking in Windows), one primary and one or more secondary DNS servers are usually specified as part of the installation. This way, any Internet applications that need domain name resolution will be able to function correctly. For example, when you enter a web address into your web browser, the browser first connects to your primary DNS server. After obtaining the IP address for the domain name you entered, the browser then connects to the target computer and requests the web page you wanted.
 
@@ -196,6 +239,23 @@ When you type a URL into a web browser, this is what happens:
 6.  For each element needed, the browser makes additional connections and HTTP requests to the server for each element.
 7.  When the browser has finished loading all images, applets, etc. the page will be completely loaded in the browser window.
 
+```mermaid
+sequenceDiagram
+    participant Client as Web Browser
+    participant DNS as DNS Server
+    participant Server as Web Server
+
+    Client->>DNS: Resolve www.example.com
+    DNS-->>Client: IP Address 93.184.216.34
+    Client->>Server: HTTP Request (GET /index.html)
+    Server-->>Client: HTTP Response (200 OK + HTML)
+    Client->>Server: HTTP Request (GET /style.css)
+    Server-->>Client: HTTP Response (200 OK + CSS)
+    Client->>Server: HTTP Request (GET /logo.png)
+    Server-->>Client: HTTP Response (200 OK + Image)
+    Note over Client: Page fully loaded
+```
+
 > **Check It Out - Use Your Telnet Client to Retrieve a Web Page Using HTTP**
 > 
 > Telnet is a remote terminal service used on the Internet. It's use has
@@ -211,7 +271,7 @@ When you type a URL into a web browser, this is what happens:
 > GET / HTTP/1.0
 > 
 > and press Enter twice. This is a simple HTTP request to a web server
-> for it's root page. You should see a web page flash by and then a
+> for its root page. You should see a web page flash by and then a
 > dialog box should pop up to tell you the connection was lost. If you'd
 > like to save the retrieved page, turn on logging in the Telnet
 > program. You may then browse through the web page and see the HTML
@@ -226,7 +286,7 @@ Another commonly used Internet service is electronic mail. E-mail uses an applic
 
 When you open your mail client to read your e-mail, this is what typically happens:
 
-1.  The mail client (Netscape Mail, Lotus Notes, Microsoft Outlook, etc.) opens a connection to it's default mail server. The mail server's IP address or domain name is typically setup when the mail client is installed.
+1.  The mail client (Netscape Mail, Lotus Notes, Microsoft Outlook, etc.) opens a connection to its default mail server. The mail server's IP address or domain name is typically setup when the mail client is installed.
 2.  The mail server will always transmit the first message to identify itself.
 3.  The client will send an SMTP HELO command to which the server will respond with a 250 OK message.
 4.  Depending on whether the client is checking mail, sending mail, etc. the appropriate SMTP commands will be sent to the server, which will respond accordingly.
@@ -277,7 +337,7 @@ TCP works like this:
 
 This is how TCP routes the data moving through the protocol stack to the correct application.
 
-TCP is not a textual protocol. **TCP is a connection-oriented, reliable, byte stream service**. Connection-oriented means that two applications using TCP must first establish a connection before exchanging data. TCP is reliable because for each packet received, an acknowledgement is sent to the sender to confirm the delivery. TCP also includes a checksum in it's header for error-checking the received data. The TCP header looks like this:  
+TCP is not a textual protocol. **TCP is a connection-oriented, reliable, byte stream service**. Connection-oriented means that two applications using TCP must first establish a connection before exchanging data. TCP is reliable because for each packet received, an acknowledgement is sent to the sender to confirm the delivery. TCP also includes a checksum in its header for error-checking the received data. The TCP header looks like this:  
   
 
 ![Diagram 7](images/ruswp_diag7.gif)
@@ -295,7 +355,6 @@ Listed below are the port numbers for some of the more commonly used Internet se
 | Service | Port  |
 |--|--|
 | Ftp | 20/21  |
-| Telnet | 23 |
 | SSH | 22 |
 | Telnet | 23 |
 | SMTP | 25 |
@@ -317,7 +376,7 @@ Listed below are the port numbers for some of the more commonly used Internet se
 
 ## Internet Protocol
 
-Unlike TCP, **IP is an unreliable, connectionless protocol**. IP doesn't care whether a packet gets to it's destination or not. Nor does IP know about connections and port numbers. **IP's job is too send and route packets to other computers**. IP packets are independent entities and may arrive out of order or not at all. It is TCP's job to make sure packets arrive and are in the correct order. About the only thing IP has in common with TCP is the way it receives data and adds it's own IP header information to the TCP data. The IP header looks like this:  
+Unlike TCP, **IP is an unreliable, connectionless protocol**. IP doesn't care whether a packet gets to its destination or not. Nor does IP know about connections and port numbers. **IP's job is to send and route packets to other computers**. IP packets are independent entities and may arrive out of order or not at all. It is TCP's job to make sure packets arrive and are in the correct order. About the only thing IP has in common with TCP is the way it receives data and adds its own IP header information to the TCP data. The IP header looks like this:  
   
 
 ![Diagram 8](images/ruswp_diag8.gif)
@@ -337,7 +396,7 @@ Diagram 9
 
 ## Wrap Up
 
-Now you know how the Internet works. But how long will it stay this way? The version of IP currently used on the Internet (version 4) only allows 232 addresses. Eventually there won't be any free IP addresses left. Surprised? Don't worry. IP version 6 is being tested right now on a research backbone by a consortium of research institutions and corporations. And after that? Who knows. The Internet has come a long way since it's inception as a Defense Department research project. No one really knows what the Internet will become. One thing is sure, however. The Internet will unite the world like no other mechanism ever has. The Information Age is in full stride and I am glad to be a part of it.
+Now you know how the Internet works. But how long will it stay this way? The version of IP currently used on the Internet (version 4) only allows 232 addresses. Eventually there won't be any free IP addresses left. Surprised? Don't worry. IP version 6 is being tested right now on a research backbone by a consortium of research institutions and corporations. And after that? Who knows. The Internet has come a long way since its inception as a Defense Department research project. No one really knows what the Internet will become. One thing is sure, however. The Internet will unite the world like no other mechanism ever has. The Information Age is in full stride and I am glad to be a part of it.
 
 Rus Shuler, 1998  
 Updates made 2002

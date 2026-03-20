@@ -37,13 +37,47 @@ There are three basic features that make HTTP a simple but powerful protocol:
 - **HTTP is media independent:** It means, any type of data can be sent by HTTP as long as both the client and the server know how to handle the data content. It is required for the client as well as the server to specify the content type using appropriate MIME-type.
 - **HTTP is stateless:** As mentioned above, HTTP is connectionless and it is a direct result of HTTP being a stateless protocol. The server and client are aware of each other only during a current request. Afterwards, both of them forget about each other. Due to this nature of the protocol, neither the client nor the browser can retain information between different requests across the web pages.
 
-> HTTP/1.0 uses a new connection for each request/response exchange, where as  
+> HTTP/1.0 uses a new connection for each request/response exchange, where as
 > HTTP/1.1 connection may be used for one or more request/response exchanges.
+
+```mermaid
+graph TB
+    subgraph "HTTP/1.0"
+        A1[Request 1] -->|New Connection| B1[Response 1]
+        A2[Request 2] -->|New Connection| B2[Response 2]
+        A3[Request 3] -->|New Connection| B3[Response 3]
+    end
+    subgraph "HTTP/1.1"
+        C1[Request 1] -->|Persistent Connection| D1[Response 1]
+        D1 --> C2[Request 2]
+        C2 --> D2[Response 2]
+        D2 --> C3[Request 3]
+        C3 --> D3[Response 3]
+    end
+    subgraph "HTTP/2"
+        E1[Request 1] -->|Multiplexed Stream| F1[Response 1]
+        E2[Request 2] -->|Multiplexed Stream| F2[Response 2]
+        E3[Request 3] -->|Multiplexed Stream| F3[Response 3]
+    end
+    style A1 fill:#f44336,color:#fff
+    style C1 fill:#FF9800,color:#fff
+    style E1 fill:#4CAF50,color:#fff
+```
 
 **Basic Architecture**  
 The following diagram shows a very basic architecture of a web application and depicts where HTTP sits:
 
 ![HTTP Architecture](images/cgiarch.gif)
+
+```mermaid
+sequenceDiagram
+    participant Client as HTTP Client<br/>(Browser)
+    participant Server as HTTP Server<br/>(Web Server)
+
+    Client->>Server: HTTP Request<br/>GET /index.html HTTP/1.1<br/>Host: www.example.com
+    Server-->>Client: HTTP Response<br/>HTTP/1.1 200 OK<br/>Content-Type: text/html<br/>&lt;html&gt;...&lt;/html&gt;
+    Note over Client,Server: Connection closed (HTTP/1.0)<br/>or kept alive (HTTP/1.1)
+```
 
 The HTTP protocol is a request/response protocol based on the client/server based architecture where web browsers, robots and search engines, etc. act like HTTP clients, and the Web server acts as a server.
 
@@ -197,7 +231,7 @@ We will discuss Request-Line and Status-Line while discussing HTTP Request and H
 > HTTP/1.1 200 OK (This is Status-Line sent by the server)
 > ```
 
-## Header Field$
+## Header Fields
 
 HTTP header fields provide required information about the request or response, or about the object sent in the message body. There are four types of HTTP message headers:
 
@@ -282,6 +316,38 @@ The request **method** indicates the method to be performed on the resource iden
 | 7    | **OPTIONS** | Describe the communication options for the target resource.                                                                                                                       |
 | 8    | **TRACE**   | Performs a message loop back test along with the path to the target resource.                                                                                                     |
 
+```mermaid
+graph LR
+    subgraph "HTTP Methods"
+        GET["GET<br/>Retrieve data"]
+        POST["POST<br/>Submit data"]
+        PUT["PUT<br/>Replace resource"]
+        DELETE["DELETE<br/>Remove resource"]
+        HEAD["HEAD<br/>Headers only"]
+        PATCH["PATCH<br/>Partial update"]
+        OPTIONS["OPTIONS<br/>Describe options"]
+        CONNECT["CONNECT<br/>Create tunnel"]
+    end
+    subgraph "Safe & Idempotent"
+        GET --- HEAD
+        GET --- OPTIONS
+    end
+    subgraph "Idempotent"
+        PUT --- DELETE
+    end
+    subgraph "Neither"
+        POST --- PATCH
+    end
+    style GET fill:#4CAF50,color:#fff
+    style POST fill:#FF9800,color:#fff
+    style PUT fill:#2196F3,color:#fff
+    style DELETE fill:#f44336,color:#fff
+    style HEAD fill:#4CAF50,color:#fff
+    style PATCH fill:#FF9800,color:#fff
+    style OPTIONS fill:#4CAF50,color:#fff
+    style CONNECT fill:#9C27B0,color:#fff
+```
+
 ## Request-URI
 
 The Request-URI is a Uniform Resource Identifier and identifies the resource upon which to apply the request. Following are the most commonly used forms to specify an URI:
@@ -298,7 +364,7 @@ The Request-URI is a Uniform Resource Identifier and identifies the resource upo
 
 We will study General-header and Entity-header in a separate chapter when we will learn HTTP header fields. For now, let's check what Request header fields are.
 
-The request-header fields allow the client to pass additional information about the request, and about the client itself, to the server. These fields act as request modifiers.Here is a list of some important Request-header fields that can be used based on the requirement:
+The request-header fields allow the client to pass additional information about the request, and about the client itself, to the server. These fields act as request modifiers. Here is a list of some important Request-header fields that can be used based on the requirement:
 
 - Accept-Charset
 
