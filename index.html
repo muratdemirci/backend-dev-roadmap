@@ -228,7 +228,7 @@
 
       var menu = [
         {t:'Table of Contents', h:'#/'},
-        {t:'Internet', children:[
+        {t:'Internet', h:'#/internet/index', children:[
           {t:'How Does the Internet Work?', h:'#/internet/how-does-the-internet-work'},
           {t:'What is HTTP?', h:'#/internet/what-is-http'},
           {t:'Browsers and How They Work', h:'#/internet/browsers-and-how-they-work'},
@@ -236,7 +236,7 @@
           {t:'What is a Domain Name?', h:'#/internet/what-is-domain-name'},
           {t:'What is Hosting?', h:'#/internet/what-is-hosting'}
         ]},
-        {t:'Basic Frontend Knowledge', children:[
+        {t:'Basic Frontend Knowledge', h:'#/basic-frontend-knowledge/index', children:[
           {t:'HTML Basics', h:'#/basic-frontend-knowledge/html-basics'},
           {t:'JavaScript Basics', h:'#/basic-frontend-knowledge/javascript-basics'},
           {t:'CSS Basics', h:'#/basic-frontend-knowledge/css-basics'}
@@ -244,7 +244,7 @@
         {t:'OS and General Knowledge', h:'#/os-general-knowledge/index'},
         {t:'Learn a Programming Language', h:'#/learn-a-programming-language/index'},
         {t:'Version Control Systems', h:'#/version-control-systems/index'},
-        {t:'Databases', children:[
+        {t:'Databases', h:'#/databases/index', children:[
           {t:'PostgreSQL', h:'#/databases/postgresql'},
           {t:'MongoDB', h:'#/databases/mongodb'},
           {t:'Relational Databases', h:'#/databases/relational-databases/index'},
@@ -257,7 +257,7 @@
         {t:'Web Security', h:'#/web-security/index'},
         {t:'Testing', h:'#/testing/index'},
         {t:'CI / CD', h:'#/ci-cd/index'},
-        {t:'Design Principles', h:'#/design-and-development-principles/index'},
+        {t:'Design and Development Principles', h:'#/design-and-development-principles/index'},
         {t:'Architectural Patterns', h:'#/architectural-patterns/index'},
         {t:'Search Engines', h:'#/search-engines/index'},
         {t:'Message Brokers', h:'#/message-brokers/index'},
@@ -267,7 +267,7 @@
         {t:'WebSockets', h:'#/websockets/index'},
         {t:'Server-Sent Events', h:'#/server-sent-events/index'},
         {t:'Web Servers', h:'#/web-servers/index'},
-        {t:'Scaling', children:[
+        {t:'Scaling', h:'#/scaling/index', children:[
           {t:'Graceful Degradation', h:'#/scaling/mitigation-strategies/graceful-degradation'},
           {t:'Throttling', h:'#/scaling/mitigation-strategies/throttling'},
           {t:'Backpressure', h:'#/scaling/mitigation-strategies/backpressure'},
@@ -282,6 +282,9 @@
         menu.forEach(function(item) {
           if (item.children) {
             html += '<li class="mm-p"><a href="javascript:void(0)">' + item.t + ' <span class="arr">&#9654;</span></a><ul class="mm-sub">';
+            if (item.h) {
+              html += '<li><a href="' + item.h + '">Overview</a></li>';
+            }
             item.children.forEach(function(c) {
               html += '<li><a href="' + c.h + '">' + c.t + '</a></li>';
             });

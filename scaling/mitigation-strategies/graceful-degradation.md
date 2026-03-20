@@ -2,8 +2,7 @@
 
 # Contents
 
-1. [Graceful Degradation](#graceful-degradation)
-2. [What Is Graceful Degradation?](#what-is-graceful-degradation)
+1. [What Is Graceful Degradation?](#what-is-graceful-degradation)
 3. [Why It Matters](#why-it-matters)
 4. [How It Works](#how-it-works)
 5. [Strategies](#strategies)
