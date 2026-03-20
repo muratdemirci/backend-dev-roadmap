@@ -223,6 +223,9 @@
   border-left:3px solid #ddd;\
 }\
 .mm-sub li a:active { background:#e8f5e9; color:#42b983; border-left-color:#42b983; }\
+.mm-list a.mm-active { color:#42b983!important; background:#e8f5e9!important; }\
+.mm-sub a.mm-active { border-left-color:#42b983!important; color:#42b983!important; background:#f0f7f4!important; }\
+.mm-list > li.mm-p.mm-has-active > a { color:#42b983; }\
 ';
       document.head.appendChild(css);
 
@@ -342,6 +345,55 @@
           closeMenu();
         }
       });
+
+      /* Highlight active menu item based on current hash */
+      function highlightActive() {
+        var hash = window.location.hash || '#/';
+        // Normalize: remove query/anchor parts after the route
+        var route = hash.split('?')[0];
+
+        // Clear all active states
+        pn.querySelectorAll('.mm-active').forEach(function(el) {
+          el.classList.remove('mm-active');
+        });
+        pn.querySelectorAll('.mm-has-active').forEach(function(el) {
+          el.classList.remove('mm-has-active');
+        });
+
+        // Find matching link
+        var allLinks = pn.querySelectorAll('a[href]');
+        var matched = null;
+        allLinks.forEach(function(a) {
+          var href = a.getAttribute('href');
+          if (href === 'javascript:void(0)') return;
+          if (href === route) {
+            matched = a;
+          }
+        });
+
+        if (matched) {
+          matched.classList.add('mm-active');
+          // If it's inside a sub-menu, expand parent and mark it
+          var parentLi = matched.closest('li.mm-p');
+          if (parentLi) {
+            parentLi.classList.add('exp');
+            parentLi.classList.add('mm-has-active');
+          }
+          // If it's inside .mm-sub but parentLi is the grandparent
+          var subMenu = matched.closest('.mm-sub');
+          if (subMenu) {
+            var parentItem = subMenu.closest('li.mm-p');
+            if (parentItem) {
+              parentItem.classList.add('exp');
+              parentItem.classList.add('mm-has-active');
+            }
+          }
+        }
+      }
+
+      // Run on load and on every hash change
+      window.addEventListener('hashchange', highlightActive);
+      highlightActive();
     })();
     </script>
   </body>
