@@ -55,6 +55,17 @@
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css"
     />
+    <style>
+      /* Docsify sidebar active link highlight */
+      .sidebar-nav li.active > a {
+        color: #42b983 !important;
+        font-weight: 700 !important;
+      }
+      .sidebar-nav a.active {
+        color: #42b983 !important;
+        border-bottom: none;
+      }
+    </style>
   </head>
   <body>
     <div id="app">Loading...</div>
@@ -111,8 +122,8 @@
         themeColor: '#42b983',
         plugins: [
           function (hook) {
-            // Update page title dynamically
             hook.doneEach(function () {
+              // 1) Dynamic page title
               var title = document.querySelector('.markdown-section h1');
               if (title) {
                 document.title = title.textContent + ' — Backend Developer Roadmap';
@@ -120,7 +131,13 @@
                 document.title = 'Backend Developer Roadmap ' + new Date().getFullYear();
               }
 
-              // Mermaid rendering
+              // 2) Canonical URL
+              var canonical = document.querySelector('link[rel="canonical"]');
+              if (canonical) {
+                canonical.href = 'https://muratdemirci.github.io/backend-dev-roadmap/' + window.location.hash;
+              }
+
+              // 3) Mermaid rendering
               var els = document.querySelectorAll(".mermaid");
               if (els.length > 0) {
                 els.forEach(function (el) {
@@ -128,13 +145,32 @@
                 });
                 mermaid.run({ nodes: els });
               }
-            });
 
-            // Update canonical URL on page change
-            hook.doneEach(function () {
-              var canonical = document.querySelector('link[rel="canonical"]');
-              if (canonical) {
-                canonical.href = 'https://muratdemirci.github.io/backend-dev-roadmap/' + window.location.hash;
+              // 4) Sync docsify sidebar active state
+              var route = (window.location.hash || '#/').split('?')[0].replace('#', '');
+              var sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+              sidebarLinks.forEach(function(a) {
+                var href = a.getAttribute('href');
+                if (!href) return;
+                // Normalize both for comparison
+                var normalizedHref = href.replace(/^\.?\/?#?\.?\//, '/').replace(/\/$/, '');
+                var normalizedRoute = route.replace(/\/$/, '');
+                if (normalizedHref === normalizedRoute || href === '#' + route) {
+                  a.classList.add('active');
+                  // Expand parent <li> in docsify sidebar
+                  var li = a.closest('li');
+                  if (li) li.classList.add('active');
+                  var parentUl = a.closest('ul');
+                  if (parentUl) {
+                    var parentLi = parentUl.closest('li');
+                    if (parentLi) parentLi.classList.add('active', 'open', 'collapse');
+                  }
+                }
+              });
+
+              // 5) Sync mobile menu active state
+              if (typeof window._mmHighlight === 'function') {
+                window._mmHighlight();
               }
             });
           },
@@ -349,10 +385,9 @@
       /* Highlight active menu item based on current hash */
       function highlightActive() {
         var hash = window.location.hash || '#/';
-        // Normalize: remove query/anchor parts after the route
         var route = hash.split('?')[0];
 
-        // Clear all active states
+        // Clear previous
         pn.querySelectorAll('.mm-active').forEach(function(el) {
           el.classList.remove('mm-active');
         });
@@ -360,26 +395,29 @@
           el.classList.remove('mm-has-active');
         });
 
-        // Find matching link
+        // Find best match (exact first, then startsWith for nested routes)
         var allLinks = pn.querySelectorAll('a[href]');
         var matched = null;
+        var bestLen = 0;
+
         allLinks.forEach(function(a) {
           var href = a.getAttribute('href');
-          if (href === 'javascript:void(0)') return;
+          if (!href || href === 'javascript:void(0)') return;
+          // Exact match
           if (href === route) {
             matched = a;
+            bestLen = href.length;
+          }
+          // Longest prefix match for nested routes (e.g. #/scaling/... matches #/scaling/index)
+          if (!matched && route.indexOf(href) === 0 && href.length > bestLen) {
+            matched = a;
+            bestLen = href.length;
           }
         });
 
         if (matched) {
           matched.classList.add('mm-active');
-          // If it's inside a sub-menu, expand parent and mark it
-          var parentLi = matched.closest('li.mm-p');
-          if (parentLi) {
-            parentLi.classList.add('exp');
-            parentLi.classList.add('mm-has-active');
-          }
-          // If it's inside .mm-sub but parentLi is the grandparent
+          // Expand parent accordion and highlight
           var subMenu = matched.closest('.mm-sub');
           if (subMenu) {
             var parentItem = subMenu.closest('li.mm-p');
@@ -391,7 +429,10 @@
         }
       }
 
-      // Run on load and on every hash change
+      // Expose globally so docsify plugin can call it
+      window._mmHighlight = highlightActive;
+
+      // Also listen to hashchange as a fallback
       window.addEventListener('hashchange', highlightActive);
       highlightActive();
     })();
