@@ -430,36 +430,72 @@
         }
       });
 
-      // Sync: clone docsify sidebar content into mobile panel
-      // Uses requestAnimationFrame to ensure docsify has finished
-      // updating active classes before we clone
+      // Sync: clone docsify sidebar into mobile panel,
+      // then manually apply active state based on current URL hash
       window._mmSync = function () {
-        requestAnimationFrame(function () {
+        setTimeout(function () {
           var sidebarNav = document.querySelector('.sidebar-nav');
           if (!sidebarNav) return;
 
-          // Deep clone including all active classes
+          // Clone the sidebar DOM
           var clone = sidebarNav.cloneNode(true);
-
-          // Remove docsify-specific elements
           clone.querySelectorAll('.sidebar-toggle, button').forEach(function (el) {
             el.remove();
           });
 
-          // Replace mobile body content
           mmBody.innerHTML = '';
           mmBody.appendChild(clone);
 
-          // Close menu on any link click
+          // Close menu on link click
           clone.querySelectorAll('a').forEach(function (a) {
             a.addEventListener('click', function () {
               closeMenu();
             });
           });
-        });
+
+          // ── Manually apply active state ──
+          // Get current route from hash
+          var hash = decodeURIComponent(window.location.hash || '#/');
+          // Remove defined section anchors like ?id=xxx
+          var route = hash.split('?')[0];
+
+          // Clear any stale active classes from the clone
+          clone.querySelectorAll('.active').forEach(function (el) {
+            el.classList.remove('active');
+          });
+
+          // Find matching link by comparing href with route
+          var bestMatch = null;
+          var bestLen = 0;
+          clone.querySelectorAll('a[href]').forEach(function (a) {
+            var href = a.getAttribute('href');
+            if (!href || href === '#/' || href === '#') return;
+            // Normalize: docsify sidebar uses #/path format
+            var normalHref = href.indexOf('#') === 0 ? href : '#/' + href.replace(/^\.\//, '');
+            if (normalHref === route) {
+              bestMatch = a;
+              bestLen = normalHref.length;
+            } else if (route.indexOf(normalHref) === 0 && normalHref.length > bestLen) {
+              bestMatch = a;
+              bestLen = normalHref.length;
+            }
+          });
+
+          if (bestMatch) {
+            // Mark the link's parent li as active
+            var li = bestMatch.closest('li');
+            if (li) li.classList.add('active');
+            // Mark all ancestor li's as active (for nested menus)
+            var parent = li;
+            while (parent) {
+              parent = parent.parentElement ? parent.parentElement.closest('li') : null;
+              if (parent) parent.classList.add('active');
+            }
+          }
+        }, 50); // Small delay to let docsify finish DOM updates
       };
 
-      // Initial sync (docsify may not have rendered yet)
+      // Initial sync
       setTimeout(function () {
         if (typeof window._mmSync === 'function') {
           window._mmSync();
