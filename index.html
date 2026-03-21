@@ -382,7 +382,6 @@
        MOBILE MENU — clones docsify sidebar for sync
        ═══════════════════════════════════════════════════ */
     (function () {
-      // Create DOM
       var fab = document.createElement('div');
       fab.id = 'mmFab';
       fab.innerHTML = '&#9776;';
@@ -398,14 +397,17 @@
       document.body.appendChild(pn);
 
       var mmBody = pn.querySelector('.mm-body');
+      var isOpen = false;
 
-      // Open / Close
       function openMenu() {
+        // Re-sync RIGHT BEFORE showing so we always have latest state
+        doSync();
         pn.classList.add('open');
         ov.classList.add('open');
         fab.classList.add('open');
         fab.innerHTML = '&#10005;';
         document.body.style.overflow = 'hidden';
+        isOpen = true;
       }
       function closeMenu() {
         pn.classList.remove('open');
@@ -413,106 +415,92 @@
         fab.classList.remove('open');
         fab.innerHTML = '&#9776;';
         document.body.style.overflow = '';
+        isOpen = false;
       }
 
       fab.addEventListener('click', function () {
-        pn.classList.contains('open') ? closeMenu() : openMenu();
+        isOpen ? closeMenu() : openMenu();
       });
       ov.addEventListener('click', closeMenu);
 
-      // Close on link click inside mobile panel
+      // Click handler on panel — close on link clicks
       pn.addEventListener('click', function (e) {
-        if (e.target.closest('a[href]') && !e.target.closest('a[href="#/"]')) {
-          var href = e.target.closest('a[href]').getAttribute('href');
-          if (href && href !== 'javascript:void(0)') {
+        var t = e.target;
+        while (t && t !== pn) {
+          if (t.tagName === 'A') {
             closeMenu();
+            return;
           }
+          t = t.parentElement;
         }
       });
 
-      // Sync mobile menu from docsify sidebar + apply active state
-      window._mmSync = function () {
+      function doSync() {
         try {
-          var sidebarNav = document.querySelector('.sidebar-nav');
-          if (!sidebarNav) return;
+          var src = document.querySelector('.sidebar-nav');
+          if (!src) return;
 
-          var clone = sidebarNav.cloneNode(true);
+          // Clone docsify sidebar
+          var clone = src.cloneNode(true);
           mmBody.innerHTML = '';
           mmBody.appendChild(clone);
 
-          // Close menu on any link click
-          clone.addEventListener('click', function (e) {
-            var a = e.target.closest('a');
-            if (a) closeMenu();
-          });
+          // Get current route
+          var hash = window.location.hash || '#/';
+          var route = hash.split('?')[0];
 
-          // Apply active state
-          var route = (window.location.hash || '#/').split('?')[0];
-
-          // Normalize a href for comparison
-          function norm(h) {
-            if (!h) return '';
-            // Strip all ./ occurrences (docsify keeps them from _sidebar.md)
-            h = h.replace(/\.\//g, '');
-            // Ensure #/ prefix
-            if (h.charAt(0) !== '#') h = '#/' + h.replace(/^\//, '');
-            return h;
+          // Normalize href: strip ./ and ensure #/ prefix
+          function n(raw) {
+            if (!raw) return '';
+            var s = raw.replace(/\.\//g, '');
+            if (s.charAt(0) !== '#') s = '#/' + s.replace(/^\//, '');
+            return s;
           }
 
-          // Find best matching link
+          // Scan all links, find exact match
           var links = clone.getElementsByTagName('a');
-          var best = null;
-          var bestL = 0;
-          for (var i = 0; i < links.length; i++) {
-            var h = norm(links[i].getAttribute('href'));
-            if (h === route && h.length > bestL) {
-              best = links[i];
-              bestL = h.length;
-            }
-          }
-          // Fallback: prefix match
-          if (!best) {
-            for (var j = 0; j < links.length; j++) {
-              var h2 = norm(links[j].getAttribute('href'));
-              if (h2 && h2 !== '#/' && route.indexOf(h2) === 0 && h2.length > bestL) {
-                best = links[j];
-                bestL = h2.length;
-              }
+          var found = null;
+          var i, href;
+          for (i = 0; i < links.length; i++) {
+            href = n(links[i].getAttribute('href'));
+            if (href === route) {
+              found = links[i];
+              break;
             }
           }
 
-          if (!best) return;
+          if (!found) return;
 
-          // Style active link
-          best.style.color = '#42b983';
-          best.style.fontWeight = '700';
-          best.style.background = '#e8f5e9';
-          best.style.borderLeft = '3px solid #42b983';
+          // Apply inline active style to the matched link
+          found.setAttribute('style', 'color:#42b983 !important;font-weight:700 !important;background:#e8f5e9 !important;border-left:3px solid #42b983 !important;');
 
-          // Walk up: mark parent li's and style their first child link/text
-          var el = best.parentElement;
-          while (el && el !== clone) {
-            if (el.tagName === 'LI') {
-              el.classList.add('active');
-              // Find first a or p that is a direct child
-              var kids = el.children;
-              for (var k = 0; k < kids.length; k++) {
-                if ((kids[k].tagName === 'A' || kids[k].tagName === 'P') && kids[k] !== best) {
-                  kids[k].style.color = '#42b983';
-                  kids[k].style.fontWeight = '700';
+          // Walk up and style all ancestor LI and their first A/P child
+          var p = found.parentElement;
+          while (p && p !== clone) {
+            if (p.tagName === 'LI') {
+              p.classList.add('active');
+              var ch = p.children;
+              for (var j = 0; j < ch.length; j++) {
+                var tag = ch[j].tagName;
+                if ((tag === 'A' || tag === 'P') && ch[j] !== found) {
+                  ch[j].setAttribute('style', 'color:#42b983 !important;font-weight:700 !important;');
                   break;
                 }
               }
             }
-            el = el.parentElement;
+            p = p.parentElement;
           }
-        } catch (e) {
-          // Silently handle errors to prevent menu breakage
-        }
+        } catch (err) {}
+      }
+
+      // Expose for docsify plugin
+      window._mmSync = function () {
+        // Delay 250ms so docsify finishes updating sidebar active state
+        setTimeout(doSync, 250);
       };
 
-      // Initial sync after docsify renders
-      setTimeout(window._mmSync, 600);
+      // Initial sync
+      setTimeout(doSync, 800);
     })();
     </script>
   </body>
