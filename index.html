@@ -74,6 +74,13 @@
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
     <style>
+      /* ═══ Web Sidebar active state ═══ */
+      .sidebar-nav li.active > a {
+        color: #42b983 !important;
+        font-weight: 700 !important;
+        border-right: 3px solid #42b983;
+      }
+
       /* ═══ Mobile Menu — only visible <= 768px ═══ */
       #mmFab {
         display: none;
@@ -424,31 +431,35 @@
       });
 
       // Sync: clone docsify sidebar content into mobile panel
+      // Uses requestAnimationFrame to ensure docsify has finished
+      // updating active classes before we clone
       window._mmSync = function () {
-        var sidebarNav = document.querySelector('.sidebar-nav');
-        if (!sidebarNav) return;
+        requestAnimationFrame(function () {
+          var sidebarNav = document.querySelector('.sidebar-nav');
+          if (!sidebarNav) return;
 
-        // Deep clone
-        var clone = sidebarNav.cloneNode(true);
+          // Deep clone including all active classes
+          var clone = sidebarNav.cloneNode(true);
 
-        // Remove any docsify-specific toggle buttons if present
-        clone.querySelectorAll('.sidebar-toggle, button').forEach(function (el) {
-          el.remove();
-        });
+          // Remove docsify-specific elements
+          clone.querySelectorAll('.sidebar-toggle, button').forEach(function (el) {
+            el.remove();
+          });
 
-        // Replace mobile body content
-        mmBody.innerHTML = '';
-        mmBody.appendChild(clone);
+          // Replace mobile body content
+          mmBody.innerHTML = '';
+          mmBody.appendChild(clone);
 
-        // Make all links close the menu on click
-        clone.querySelectorAll('a').forEach(function (a) {
-          a.addEventListener('click', function () {
-            closeMenu();
+          // Close menu on any link click
+          clone.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+              closeMenu();
+            });
           });
         });
       };
 
-      // Initial sync attempt (docsify may not have rendered yet)
+      // Initial sync (docsify may not have rendered yet)
       setTimeout(function () {
         if (typeof window._mmSync === 'function') {
           window._mmSync();
