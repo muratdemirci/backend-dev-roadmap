@@ -1,40 +1,10 @@
 ## Backend Developer Roadmap
 
-> Step by step guide to becoming a modern backend developer in 2023
+> Step by step guide to becoming a modern backend developer
 
 Live: https://muratdemirci.github.io/backend-dev-roadmap/#/
 
 # Table of Contents
-
-- [PostgreSQL: Documentation](databases/postgresql/index)
-  * [**PostgreSQL: Documentation**](databases/postgresql/index)
-
-
-
-- [Example Domain](test-example/index)
-  * [**Example Domain**](test-example/index)
-
-
-
-- [MongoDB Documentation - Homepage](databases/mongodb/index)
-  * [**MongoDB Documentation - Homepage**](databases/mongodb/index)
-
-
-
-- [What is MongoDB? - Database Manual - MongoDB Docs](databases/index)
-  * [**What is MongoDB? - Database Manual - MongoDB Docs**](databases/index)
-
-
-
-- [MongoDB Documentation - Homepage](databases/index)
-  * [**MongoDB Documentation - Homepage**](databases/index)
-
-
-
-- [Example Domain](./index)
-  * [**Example Domain**](./index)
-
-
 
 <!-- _sidebar.md -->
 
