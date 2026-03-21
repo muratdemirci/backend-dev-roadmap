@@ -2,7 +2,6 @@
 
 > Step by step guide to becoming a modern backend developer
 
-Live: https://muratdemirci.github.io/backend-dev-roadmap/#/
 
 # Table of Contents
 
