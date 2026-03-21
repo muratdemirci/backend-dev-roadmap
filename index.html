@@ -454,42 +454,62 @@
           });
 
           // ── Manually apply active state ──
-          // Get current route from hash
           var hash = decodeURIComponent(window.location.hash || '#/');
-          // Remove defined section anchors like ?id=xxx
           var route = hash.split('?')[0];
 
-          // Clear any stale active classes from the clone
-          clone.querySelectorAll('.active').forEach(function (el) {
-            el.classList.remove('active');
-          });
-
-          // Find matching link by comparing href with route
+          // Collect all links with normalized hrefs for comparison
+          var allLinks = clone.querySelectorAll('a[href]');
           var bestMatch = null;
           var bestLen = 0;
-          clone.querySelectorAll('a[href]').forEach(function (a) {
+
+          allLinks.forEach(function (a) {
+            // Reset any previous active styling
+            a.style.cssText = '';
+
             var href = a.getAttribute('href');
-            if (!href || href === '#/' || href === '#') return;
-            // Normalize: docsify sidebar uses #/path format
-            var normalHref = href.indexOf('#') === 0 ? href : '#/' + href.replace(/^\.\//, '');
-            if (normalHref === route) {
+            if (!href) return;
+
+            // Normalize href to #/path format
+            var nh = href;
+            if (nh.indexOf('#') !== 0) {
+              nh = '#/' + nh.replace(/^\.\//, '');
+            }
+
+            // Exact match wins
+            if (nh === route && nh.length > bestLen) {
               bestMatch = a;
-              bestLen = normalHref.length;
-            } else if (route.indexOf(normalHref) === 0 && normalHref.length > bestLen) {
+              bestLen = nh.length;
+            }
+            // Prefix match as fallback
+            if (!bestMatch && route.indexOf(nh) === 0 && nh.length > bestLen && nh !== '#/') {
               bestMatch = a;
-              bestLen = normalHref.length;
+              bestLen = nh.length;
             }
           });
 
           if (bestMatch) {
-            // Mark the link's parent li as active
+            // Style the active link directly (bypasses all CSS specificity)
+            bestMatch.style.color = '#42b983';
+            bestMatch.style.fontWeight = '700';
+            bestMatch.style.background = '#e8f5e9';
+            bestMatch.style.borderLeft = '3px solid #42b983';
+
+            // Walk up and highlight all parent li > a/p elements
             var li = bestMatch.closest('li');
-            if (li) li.classList.add('active');
-            // Mark all ancestor li's as active (for nested menus)
-            var parent = li;
-            while (parent) {
-              parent = parent.parentElement ? parent.parentElement.closest('li') : null;
-              if (parent) parent.classList.add('active');
+            while (li) {
+              li.classList.add('active');
+              var parentUl = li.parentElement;
+              if (!parentUl) break;
+              var parentLi = parentUl.closest('li');
+              if (!parentLi) break;
+              parentLi.classList.add('active');
+              // Style the parent's direct a or p child
+              var parentLink = parentLi.querySelector(':scope > a, :scope > p');
+              if (parentLink) {
+                parentLink.style.color = '#42b983';
+                parentLink.style.fontWeight = '700';
+              }
+              li = parentLi;
             }
           }
         }, 50); // Small delay to let docsify finish DOM updates
