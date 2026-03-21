@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-- [Table of Contents](/)
+- [Table of Contents](/#/)
 
 - [Internet](./internet/index)
 
