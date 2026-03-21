@@ -452,8 +452,11 @@
           // Normalize a href for comparison
           function norm(h) {
             if (!h) return '';
-            if (h.charAt(0) === '#') return h;
-            return '#/' + h.replace(/^\.\//, '').replace(/^\//, '');
+            // Strip all ./ occurrences (docsify keeps them from _sidebar.md)
+            h = h.replace(/\.\//g, '');
+            // Ensure #/ prefix
+            if (h.charAt(0) !== '#') h = '#/' + h.replace(/^\//, '');
+            return h;
           }
 
           // Find best matching link
