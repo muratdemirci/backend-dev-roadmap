@@ -13,7 +13,9 @@
     <meta name="keywords" content="backend developer, roadmap, backend development, web development, programming, databases, APIs, REST, GraphQL, gRPC, microservices, Docker, Kubernetes, Node.js, Python, Java, Go, SQL, NoSQL, Redis, caching, web security, CI/CD, scaling" />
     <meta name="author" content="Murat Demirci" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#42b983" />
     <link rel="canonical" href="https://muratdemirci.github.io/backend-dev-roadmap/" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛤️</text></svg>" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -22,33 +24,52 @@
     <meta property="og:description" content="A comprehensive, step-by-step guide to becoming a modern backend developer. Covers databases, APIs, security, CI/CD, architectural patterns, scaling, and more." />
     <meta property="og:site_name" content="Backend Developer Roadmap" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://opengraph.githubassets.com/1/muratdemirci/backend-dev-roadmap" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Backend Developer Roadmap 2026 — Step by Step Guide" />
     <meta name="twitter:description" content="A comprehensive, step-by-step guide to becoming a modern backend developer. Covers databases, APIs, security, CI/CD, architectural patterns, scaling, and more." />
+    <meta name="twitter:image" content="https://opengraph.githubassets.com/1/muratdemirci/backend-dev-roadmap" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Backend Developer Roadmap",
-      "url": "https://muratdemirci.github.io/backend-dev-roadmap/",
-      "description": "A comprehensive, step-by-step guide to becoming a modern backend developer.",
-      "author": {
-        "@type": "Person",
-        "name": "Murat Demirci",
-        "url": "https://github.com/muratdemirci"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Backend Developer Roadmap",
+        "url": "https://muratdemirci.github.io/backend-dev-roadmap/",
+        "description": "A comprehensive, step-by-step guide to becoming a modern backend developer.",
+        "author": {
+          "@type": "Person",
+          "name": "Murat Demirci",
+          "url": "https://github.com/muratdemirci"
+        },
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "educationalUse": "self-study",
+        "about": {
+          "@type": "Thing",
+          "name": "Backend Web Development"
+        }
       },
-      "inLanguage": "en",
-      "isAccessibleForFree": true,
-      "educationalUse": "self-study",
-      "about": {
-        "@type": "Thing",
-        "name": "Backend Web Development"
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://muratdemirci.github.io/backend-dev-roadmap/"},
+          {"@type": "ListItem", "position": 2, "name": "Internet", "item": "https://muratdemirci.github.io/backend-dev-roadmap/#/internet/index"},
+          {"@type": "ListItem", "position": 3, "name": "Databases", "item": "https://muratdemirci.github.io/backend-dev-roadmap/#/databases/index"},
+          {"@type": "ListItem", "position": 4, "name": "APIs", "item": "https://muratdemirci.github.io/backend-dev-roadmap/#/learn-about-api-s/index"},
+          {"@type": "ListItem", "position": 5, "name": "Web Security", "item": "https://muratdemirci.github.io/backend-dev-roadmap/#/web-security/index"},
+          {"@type": "ListItem", "position": 6, "name": "Architectural Patterns", "item": "https://muratdemirci.github.io/backend-dev-roadmap/#/architectural-patterns/index"},
+          {"@type": "ListItem", "position": 7, "name": "Scaling", "item": "https://muratdemirci.github.io/backend-dev-roadmap/#/scaling/index"}
+        ]
       }
-    }
+    ]
     </script>
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
@@ -214,37 +235,81 @@
   <body>
     <div id="app">Loading...</div>
 
-    <!-- noscript fallback for SEO -->
+    <!-- noscript fallback for SEO crawlers -->
     <noscript>
       <style>.sidebar,.sidebar-toggle{display:none!important}section.content{left:0!important}</style>
       <div style="max-width:800px;margin:0 auto;padding:20px;font-family:sans-serif">
-        <h1>Backend Developer Roadmap</h1>
-        <p>A comprehensive, step-by-step guide to becoming a modern backend developer.</p>
-        <h2>Topics Covered</h2>
-        <ul>
-          <li><strong>Internet Fundamentals</strong> — How the internet works, HTTP, DNS, browsers, domain names, hosting</li>
-          <li><strong>Frontend Basics</strong> — HTML, CSS, JavaScript essentials for backend developers</li>
-          <li><strong>OS and General Knowledge</strong> — Processes, memory management, file systems, networking</li>
-          <li><strong>Programming Languages</strong> — JavaScript/Node.js, Python, Java, Go, Rust, C#, PHP, Ruby</li>
-          <li><strong>Version Control</strong> — Git fundamentals, branching strategies, GitHub/GitLab</li>
-          <li><strong>Databases</strong> — Relational (PostgreSQL, MySQL), NoSQL (MongoDB, Redis), N+1 problem</li>
-          <li><strong>APIs</strong> — REST, GraphQL, gRPC, authentication, API design best practices</li>
-          <li><strong>Caching</strong> — Redis, Memcached, CDN, cache strategies and eviction policies</li>
-          <li><strong>Web Security</strong> — OWASP Top 10, HTTPS/TLS, SQL injection, XSS, CSRF, OAuth 2.0</li>
-          <li><strong>Testing</strong> — Unit, integration, E2E testing, TDD, code coverage</li>
-          <li><strong>CI/CD</strong> — GitHub Actions, Jenkins, deployment strategies, infrastructure as code</li>
-          <li><strong>Design Principles</strong> — SOLID, DRY, KISS, design patterns, clean code</li>
-          <li><strong>Architectural Patterns</strong> — Monolith, microservices, serverless, CQRS, service mesh, twelve-factor app</li>
-          <li><strong>Search Engines</strong> — Elasticsearch, Solr, MeiliSearch</li>
-          <li><strong>Message Brokers</strong> — RabbitMQ, Apache Kafka, Redis Pub/Sub</li>
-          <li><strong>Containerization</strong> — Docker, Kubernetes, container orchestration</li>
-          <li><strong>GraphQL</strong> — Schema, queries, mutations, subscriptions, DataLoader</li>
-          <li><strong>Graph Databases</strong> — Neo4j, Cypher query language, use cases</li>
-          <li><strong>Real-time Communication</strong> — WebSockets, Server-Sent Events</li>
-          <li><strong>Web Servers</strong> — Nginx, Apache, Caddy, reverse proxy, load balancing</li>
-          <li><strong>Scaling</strong> — Horizontal/vertical scaling, sharding, replication, circuit breaker, monitoring, telemetry</li>
-        </ul>
-        <p>Please enable JavaScript to use the interactive version of this roadmap.</p>
+        <h1>Backend Developer Roadmap 2026</h1>
+        <p>A comprehensive, step-by-step guide to becoming a modern backend developer. Please enable JavaScript for the full interactive experience.</p>
+        <nav aria-label="Main navigation">
+          <h2>Internet</h2>
+          <ul>
+            <li><a href="#/internet/how-does-the-internet-work">How Does the Internet Work?</a></li>
+            <li><a href="#/internet/what-is-http">What is HTTP?</a></li>
+            <li><a href="#/internet/browsers-and-how-they-work">Browsers and How They Work</a></li>
+            <li><a href="#/internet/dns-and-how-it-works">DNS and How It Works</a></li>
+            <li><a href="#/internet/what-is-domain-name">What is a Domain Name?</a></li>
+            <li><a href="#/internet/what-is-hosting">What is Hosting?</a></li>
+          </ul>
+          <h2>Basic Frontend Knowledge</h2>
+          <ul>
+            <li><a href="#/basic-frontend-knowledge/html-basics">HTML Basics</a></li>
+            <li><a href="#/basic-frontend-knowledge/javascript-basics">JavaScript Basics</a></li>
+            <li><a href="#/basic-frontend-knowledge/css-basics">CSS Basics</a></li>
+          </ul>
+          <h2>Core Backend Topics</h2>
+          <ul>
+            <li><a href="#/os-general-knowledge/index">OS and General Knowledge</a></li>
+            <li><a href="#/learn-a-programming-language/index">Learn a Programming Language</a></li>
+            <li><a href="#/version-control-systems/index">Version Control Systems</a></li>
+          </ul>
+          <h2>Databases</h2>
+          <ul>
+            <li><a href="#/databases/relational-databases/index">Relational Databases</a></li>
+            <li><a href="#/databases/nosql-databases/index">NoSQL Databases</a></li>
+            <li><a href="#/databases/postgresql">PostgreSQL</a></li>
+            <li><a href="#/databases/mongodb">MongoDB</a></li>
+            <li><a href="#/databases/n-plus-1-problem/index">N+1 Problem</a></li>
+          </ul>
+          <h2>APIs and Communication</h2>
+          <ul>
+            <li><a href="#/learn-about-api-s/index">Learn about APIs</a></li>
+            <li><a href="#/grpc/index">gRPC</a></li>
+            <li><a href="#/graphql/index">GraphQL</a></li>
+            <li><a href="#/websockets/index">WebSockets</a></li>
+            <li><a href="#/server-sent-events/index">Server-Sent Events</a></li>
+          </ul>
+          <h2>Infrastructure</h2>
+          <ul>
+            <li><a href="#/caching/index">Caching</a></li>
+            <li><a href="#/web-servers/index">Web Servers</a></li>
+            <li><a href="#/message-brokers/index">Message Brokers</a></li>
+            <li><a href="#/search-engines/index">Search Engines</a></li>
+            <li><a href="#/containerization-virtualization/index">Containerization vs Virtualization</a></li>
+          </ul>
+          <h2>Security, Testing, CI/CD</h2>
+          <ul>
+            <li><a href="#/web-security/index">Web Security</a></li>
+            <li><a href="#/testing/index">Testing</a></li>
+            <li><a href="#/ci-cd/index">CI / CD</a></li>
+          </ul>
+          <h2>Architecture and Design</h2>
+          <ul>
+            <li><a href="#/design-and-development-principles/index">Design and Development Principles</a></li>
+            <li><a href="#/architectural-patterns/index">Architectural Patterns</a></li>
+            <li><a href="#/graph-databases/index">Graph Databases</a></li>
+          </ul>
+          <h2>Scaling</h2>
+          <ul>
+            <li><a href="#/scaling/index">Scaling Overview</a></li>
+            <li><a href="#/scaling/mitigation-strategies/graceful-degradation">Graceful Degradation</a></li>
+            <li><a href="#/scaling/mitigation-strategies/throttling">Throttling</a></li>
+            <li><a href="#/scaling/mitigation-strategies/backpressure">Backpressure</a></li>
+            <li><a href="#/scaling/mitigation-strategies/circuit-breaker">Circuit Breaker</a></li>
+            <li><a href="#/scaling/understand-the-diff/monitoring">Monitoring</a></li>
+            <li><a href="#/scaling/understand-the-diff/telemetry">Telemetry</a></li>
+          </ul>
+        </nav>
         <p>Source: <a href="https://github.com/muratdemirci/backend-dev-roadmap">github.com/muratdemirci/backend-dev-roadmap</a></p>
       </div>
     </noscript>

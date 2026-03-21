@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Redirecting — Backend Developer Roadmap</title>
+  <script>
+    // GitHub Pages SPA redirect: convert path to hash route
+    var path = window.location.pathname.replace('/backend-dev-roadmap', '');
+    if (path && path !== '/') {
+      window.location.replace(
+        window.location.origin + '/backend-dev-roadmap/#' + path
+      );
+    } else {
+      window.location.replace(
+        window.location.origin + '/backend-dev-roadmap/'
+      );
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href="/backend-dev-roadmap/">Backend Developer Roadmap</a>...</p>
+</body>
+</html>
